@@ -1,0 +1,1333 @@
+﻿鈥塛ARN鈥?Unsupported engine: wanted: {"node":"20.*"} (current: {"node":"v24.11.0","pnpm":"10.8.0"})
+node.exe : src\compone
+nts\auth\auth-guard.ts
+x:77:21 lint/complexit
+y/noUselessFragments  
+FIXABLE  鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣
+所在位置 C:\Users\Administ
+rator\AppData\Roaming\
+npm\pnpm.ps1:24 字符: 5
++     & "node$exe"  "$
+basedir/node_modules/p
+npm/bin/pnpm.cjs" $arg
+s
++     ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (src\compon   
+ ents\...鈹佲攣鈹佲攣鈹佲攣    
+鈹佲攣鈹佲攣:String) []    ,
+ RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+
+  i This fragment is u
+nnecessary.
+  
+    75 鈹?				: true;
+    76 鈹?
+  > 77 鈹?	return hasAc
+cess ? <>{children}</>
+ : <>{fallback}</>;
+       鈹?	            
+       ^^^^^^^^^^^^^^^
+    78 鈹?};
+    79 鈹?
+  
+  i A fragment is redu
+ndant if it contains o
+nly one child, or if i
+t is the child of a ht
+ml element, and is not
+ a keyed fragment.
+  
+  i Unsafe fix: Remove
+ the Fragment
+  
+    77 鈹?鈫?return路hasA
+ccess路?路<>{children}</
+>路:路<>{fallback}</>;
+       鈹?             
+        ---        ---
+-                   
+
+src\components\auth\au
+th-guard.tsx:77:39 lin
+t/complexity/noUseless
+Fragments  FIXABLE  鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+
+  i This fragment is u
+nnecessary.
+  
+    75 鈹?				: true;
+    76 鈹?
+  > 77 鈹?	return hasAc
+cess ? <>{children}</>
+ : <>{fallback}</>;
+       鈹?	            
+                      
+   ^^^^^^^^^^^^^^^
+    78 鈹?};
+    79 鈹?
+  
+  i A fragment is redu
+ndant if it contains o
+nly one child, or if i
+t is the child of a ht
+ml element, and is not
+ a keyed fragment.
+  
+  i Unsafe fix: Remove
+ the Fragment
+  
+    77 鈹?鈫?return路hasA
+ccess路?路<>{children}</
+>路:路<>{fallback}</>;
+       鈹?             
+                      
+    ---        ---- 
+
+src\components\avatar-
+group\index.tsx:64:54 
+suppressions/incorrect
+ 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹?
+  ! A suppression shou
+ldn't have an <explana
+tion> placeholder. Exa
+mple of suppression: /
+/ biome-ignore lint: f
+alse positive
+  
+    62 鈹?		<div classN
+ame="flex -space-x-3">
+    63 鈹?			{displayAv
+atars.map((child, idx)
+ => (
+  > 64 鈹?				// biome-
+ignore lint/suspicious
+/noArrayIndexKey: <exp
+lanation>
+       鈹?				         
+                      
+                  ^^^^
+^^^^^^^^^
+    65 鈹?				<div key=
+{idx}>{cloneAvatarWith
+Size(child)}</div>
+    66 鈹?			))}
+  
+
+src\components\avatar-
+group\index.tsx:79:58 
+suppressions/incorrect
+ 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹?
+  ! A suppression shou
+ldn't have an <explana
+tion> placeholder. Exa
+mple of suppression: /
+/ biome-ignore lint: f
+alse positive
+  
+    77 鈹?						<div cl
+assName="flex gap-1">
+    78 鈹?							{extra
+Avatars.map((child, id
+x) => (
+  > 79 鈹?								// bi
+ome-ignore lint/suspic
+ious/noArrayIndexKey: 
+<explanation>
+       鈹?								     
+                      
+                      
+^^^^^^^^^^^^^
+    80 鈹?								<div 
+key={idx}>{cloneAvatar
+WithSize(child)}</div>
+    81 鈹?							))}
+  
+
+src\components\code\hi
+ghlight-code.tsx:32:62
+ suppressions/incorrec
+t 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣
+
+  ! A suppression shou
+ldn't have an <explana
+tion> placeholder. Exa
+mple of suppression: /
+/ biome-ignore lint: f
+alse positive
+  
+    30 鈹?			)}
+    31 鈹?			<div
+  > 32 鈹?				// biome-
+ignore lint/security/n
+oDangerouslySetInnerHt
+ml: <explanation>
+       鈹?				         
+                      
+                      
+    ^^^^^^^^^^^^^
+    33 鈹?				dangerous
+lySetInnerHTML={{
+    34 鈹?					__html: 
+highlighter.codeToHtml
+(code, {
+  
+
+src\_mock\handlers\_de
+mo.ts:1:1 assist/sourc
+e/organizeImports  FIX
+ABLE  鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣
+
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { DemoA
+pi } from "@/api/servi
+ces/demoService";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
+    2 鈹?import { Resul
+tStatus } from "@/type
+s/enum";
+    3 鈹?import { http,
+ HttpResponse } from "
+msw";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路DemoApi路}路from路"@/api
+/services/demoService"
+;
+     2    鈹?- import路{
+路ResultStatus路}路from路"
+@/types/enum";
+     3    鈹?- import路{
+路http,路HttpResponse路}路
+from路"msw";
+        1 鈹?+ import路{
+路HttpResponse,路http路}路
+from路"msw";
+        2 鈹?+ import路{
+路DemoApi路}路from路"@/api
+/services/demoService"
+;
+        3 鈹?+ import路{
+路ResultStatus路}路from路"
+@/types/enum";
+     4  4 鈹?  
+     5  5 鈹?  const mo
+ckTokenExpired = http.
+post(`/api${DemoApi.TO
+KEN_EXPIRED}`, () => {
+  
+
+src\api\apiClient.ts:1
+:1 assist/source/organ
+izeImports  FIXABLE  鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹?
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { GLOBA
+L_CONFIG } from "@/glo
+bal-config";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
+    2 鈹?import { t } f
+rom "@/locales/i18n";
+    3 鈹?import userSto
+re from "@/store/userS
+tore";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路GLOBAL_CONFIG路}路from路
+"@/global-config";
+     2    鈹?- import路{
+路t路}路from路"@/locales/i
+18n";
+     3    鈹?- import路u
+serStore路from路"@/store
+/userStore";
+     4    鈹?- import路a
+xios,路{路type路AxiosRequ
+estConfig,路type路AxiosE
+rror,路type路AxiosRespon
+se路}路from路"axios";
+     5    鈹?- import路{
+路toast路}路from路"sonner"
+;
+     6    鈹?- import路t
+ype路{路Result路}路from路"#
+/api";
+     7    鈹?- import路{
+路ResultStatus路}路from路"
+#/enum";
+        1 鈹?+ import路a
+xios,路{路type路AxiosErro
+r,路type路AxiosRequestCo
+nfig,路type路AxiosRespon
+se路}路from路"axios";
+        2 鈹?+ import路{
+路toast路}路from路"sonner"
+;
+        3 鈹?+ import路t
+ype路{路Result路}路from路"#
+/api";
+        4 鈹?+ import路{
+路ResultStatus路}路from路"
+#/enum";
+        5 鈹?+ import路{
+路GLOBAL_CONFIG路}路from路
+"@/global-config";
+        6 鈹?+ import路{
+路t路}路from路"@/locales/i
+18n";
+        7 鈹?+ import路u
+serStore路from路"@/store
+/userStore";
+     8  8 鈹?  
+     9  9 鈹?  const ax
+iosInstance = axios.cr
+eate({
+  
+
+src\api\services\menuS
+ervice.ts:1:1 assist/s
+ource/organizeImports 
+ FIXABLE  鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣
+
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import apiClie
+nt from "../apiClient"
+;
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^
+    2 鈹?
+    3 鈹?import type { 
+Menu } from "#/entity"
+;
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路a
+piClient路from路"../apiC
+lient";
+     2    鈹?- 
+     3    鈹?- import路t
+ype路{路Menu路}路from路"#/e
+ntity";
+        1 鈹?+ import路t
+ype路{路Menu路}路from路"#/e
+ntity";
+        2 鈹?+ import路a
+piClient路from路"../apiC
+lient";
+     4  3 鈹?  
+     5  4 鈹?  export e
+num MenuApi {
+  
+
+src\components\animate
+\motion-lazy.tsx:1:1 a
+ssist/source/organizeI
+mports  FIXABLE  鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { LazyM
+otion, domMax, m } fro
+m "motion/react";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
+    2 鈹?
+    3 鈹?type Props = {
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路LazyMotion,路domMax,路m
+路}路from路"motion/react"
+;
+        1 鈹?+ import路{
+路domMax,路LazyMotion,路m
+路}路from路"motion/react"
+;
+     2  2 鈹?  
+     3  3 鈹?  type Pro
+ps = {
+  
+
+src\components\animate
+\scroll-progress\scrol
+l-progress.tsx:1:1 ass
+ist/source/organizeImp
+orts  FIXABLE  鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣
+
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { useTh
+eme } from "@/theme/ho
+oks";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^
+    2 鈹?import { type 
+HTMLMotionProps, type 
+MotionValue, m, useSpr
+ing } from "motion/rea
+ct";
+    3 鈹?import type { 
+CSSProperties } from "
+react";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路useTheme路}路from路"@/th
+eme/hooks";
+     2    鈹?- import路{
+路type路HTMLMotionProps,
+路type路MotionValue,路m,路
+useSpring路}路from路"moti
+on/react";
+     3    鈹?- import路t
+ype路{路CSSProperties路}路
+from路"react";
+        1 鈹?+ import路{
+路type路HTMLMotionProps,
+路type路MotionValue,路m,路
+useSpring路}路from路"moti
+on/react";
+        2 鈹?+ import路t
+ype路{路CSSProperties路}路
+from路"react";
+        3 鈹?+ import路{
+路useTheme路}路from路"@/th
+eme/hooks";
+     4  4 鈹?  
+     5  5 鈹?  /**
+  
+
+src\components\avatar-
+group\index.tsx:1:1 as
+sist/source/organizeIm
+ports  FIXABLE  鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { Avata
+r, AvatarFallback } fr
+om "@/ui/avatar";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
+    2 鈹?import { Toolt
+ip, TooltipContent, To
+oltipTrigger } from "@
+/ui/tooltip";
+    3 鈹?import * as Re
+act from "react";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路Avatar,路AvatarFallbac
+k路}路from路"@/ui/avatar"
+;
+     2    鈹?- import路{
+路Tooltip,路TooltipConte
+nt,路TooltipTrigger路}路f
+rom路"@/ui/tooltip";
+     3    鈹?- import路*
+路as路React路from路"react"
+;
+     4    鈹?- import路t
+ype路{路CSSProperties路}路
+from路"react";
+        1 鈹?+ import路t
+ype路{路CSSProperties路}路
+from路"react";
+        2 鈹?+ import路*
+路as路React路from路"react"
+;
+        3 鈹?+ import路{
+路Avatar,路AvatarFallbac
+k路}路from路"@/ui/avatar"
+;
+        4 鈹?+ import路{
+路Tooltip,路TooltipConte
+nt,路TooltipTrigger路}路f
+rom路"@/ui/tooltip";
+     5  5 鈹?  
+     6  6 鈹?  interfac
+e AvatarGroupProps {
+  
+
+src\components\chart\c
+hart.tsx:1:1 assist/so
+urce/organizeImports  
+FIXABLE  鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹?
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import ApexCha
+rt from "react-apexcha
+rts";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^
+    2 鈹?import { chart
+Wrapper } from "./styl
+es.css";
+    3 鈹?
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路A
+pexChart路from路"react-a
+pexcharts";
+     2    鈹?- import路{
+路chartWrapper路}路from路"
+./styles.css";
+     3    鈹?- 
+     4    鈹?- import路t
+ype路{路Props路as路ApexCha
+rtProps路}路from路"react-
+apexcharts";
+        1 鈹?+ import路t
+ype路{路Props路as路ApexCha
+rtProps路}路from路"react-
+apexcharts";
+        2 鈹?+ import路A
+pexChart路from路"react-a
+pexcharts";
+        3 鈹?+ import路{
+路chartWrapper路}路from路"
+./styles.css";
+     5  4 鈹?  
+     6  5 鈹?  export f
+unction Chart(props: A
+pexChartProps) {
+  
+
+src\components\chart\s
+tyles.css.ts:1:1 assis
+t/source/organizeImpor
+ts  FIXABLE  鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+?
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { theme
+Vars } from "@/theme/t
+heme.css";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
+    2 鈹?import { rgbAl
+pha } from "@/utils/th
+eme";
+    3 鈹?import { globa
+lStyle } from "@vanill
+a-extract/css";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路themeVars路}路from路"@/t
+heme/theme.css";
+     2    鈹?- import路{
+路rgbAlpha路}路from路"@/ut
+ils/theme";
+     3    鈹?- import路{
+路globalStyle路}路from路"@
+vanilla-extract/css";
+     4    鈹?- import路{
+路style路}路from路"@vanill
+a-extract/css";
+        1 鈹?+ import路{
+路globalStyle,路style路}路
+from路"@vanilla-extract
+/css";
+        2 鈹?+ import路{
+路themeVars路}路from路"@/t
+heme/theme.css";
+        3 鈹?+ import路{
+路rgbAlpha路}路from路"@/ut
+ils/theme";
+     5  4 鈹?  
+     6  5 鈹?  export c
+onst chartWrapper = st
+yle({}, "apexcharts-wr
+apper");
+  
+
+src\components\chart\u
+seChart.ts:1:1 assist/
+source/organizeImports
+  FIXABLE  鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹?
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { theme
+Vars } from "@/theme/t
+heme.css";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
+    2 鈹?import { remov
+ePx, rgbAlpha } from "
+@/utils/theme";
+    3 鈹?import type { 
+ApexOptions } from "ap
+excharts";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+      1     鈹?- import
+路{路themeVars路}路from路"@
+/theme/theme.css";
+      2     鈹?- import
+路{路removePx,路rgbAlpha路
+}路from路"@/utils/theme"
+;
+      3     鈹?- import
+路type路{路ApexOptions路}路
+from路"apexcharts";
+      4     鈹?- import
+路{路mergeDeepRight路}路fr
+om路"ramda";
+      5     鈹?- 
+      6     鈹?- import
+路{路useSettings路}路from路
+"@/store/settingStore"
+;
+      7     鈹?- import
+路{路breakpointsTokens路}
+路from路"@/theme/tokens/
+breakpoints";
+      8     鈹?- import
+路{路paletteColors,路pres
+etsColors路}路from路"@/th
+eme/tokens/color";
+      9     鈹?- import
+路type路{路ThemeColorPres
+ets,路ThemeMode路}路from路
+"@/types/enum";
+          1 鈹?+ import
+路type路{路ApexOptions路}路
+from路"apexcharts";
+          2 鈹?+ import
+路{路mergeDeepRight路}路fr
+om路"ramda";
+          3 鈹?+ import
+路{路useSettings路}路from路
+"@/store/settingStore"
+;
+          4 鈹?+ import
+路{路themeVars路}路from路"@
+/theme/theme.css";
+          5 鈹?+ import
+路{路breakpointsTokens路}
+路from路"@/theme/tokens/
+breakpoints";
+          6 鈹?+ import
+路{路paletteColors,路pres
+etsColors路}路from路"@/th
+eme/tokens/color";
+          7 鈹?+ import
+路type路{路ThemeColorPres
+ets,路ThemeMode路}路from路
+"@/types/enum";
+          8 鈹?+ import
+路{路removePx,路rgbAlpha路
+}路from路"@/utils/theme"
+;
+     10   9 鈹?  
+     11  10 鈹?  export
+ function useChart(opt
+ions: ApexOptions) {
+  
+
+src\components\code\co
+de-bock.tsx:1:1 assist
+/source/organizeImport
+s  FIXABLE  鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣
+
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { Butto
+n } from "@/ui/button"
+;
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^
+    2 鈹?import { Card,
+ CardContent, CardDesc
+ription, CardFooter, C
+ardHeader, CardTitle }
+ from "@/ui/card";
+    3 鈹?import { Colla
+psible, CollapsibleCon
+tent, CollapsibleTrigg
+er } from "@/ui/collap
+sible";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路Button路}路from路"@/ui/b
+utton";
+     2    鈹?- import路{
+路Card,路CardContent,路Ca
+rdDescription,路CardFoo
+ter,路CardHeader,路CardT
+itle路}路from路"@/ui/card
+";
+     3    鈹?- import路{
+路Collapsible,路Collapsi
+bleContent,路Collapsibl
+eTrigger路}路from路"@/ui/
+collapsible";
+     4    鈹?- import路{
+路cn路}路from路"@/utils";
+     5    鈹?- import路{
+路useState路}路from路"reac
+t";
+     6    鈹?- import路{
+路type路CodeBlockProps,路
+HighlightCode路}路from路"
+.";
+     7    鈹?- import路{
+路Icon路}路from路"../icon"
+;
+        1 鈹?+ import路{
+路useState路}路from路"reac
+t";
+        2 鈹?+ import路{
+路Button路}路from路"@/ui/b
+utton";
+        3 鈹?+ import路{
+路Card,路CardContent,路Ca
+rdDescription,路CardFoo
+ter,路CardHeader,路CardT
+itle路}路from路"@/ui/card
+";
+        4 鈹?+ import路{
+路Collapsible,路Collapsi
+bleContent,路Collapsibl
+eTrigger路}路from路"@/ui/
+collapsible";
+        5 鈹?+ import路{
+路cn路}路from路"@/utils";
+        6 鈹?+ import路{
+路Icon路}路from路"../icon"
+;
+        7 鈹?+ import路{
+路type路CodeBlockProps,路
+HighlightCode路}路from路"
+.";
+     8  8 鈹?  
+     9  9 鈹?  export f
+unction CodeBlock({ ti
+tle, description, chil
+dren, code, options, c
+lassName, ...props }: 
+CodeBlockProps) {
+  
+
+src\components\code\hi
+ghlight-code.tsx:1:1 a
+ssist/source/organizeI
+mports  FIXABLE  鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { Icon 
+} from "@/components/i
+con";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^
+    2 鈹?import { useCo
+pyToClipboard } from "
+@/hooks";
+    3 鈹?import { useSe
+ttings } from "@/store
+/settingStore";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路Icon路}路from路"@/compon
+ents/icon";
+     2    鈹?- import路{
+路useCopyToClipboard路}路
+from路"@/hooks";
+     3    鈹?- import路{
+路useSettings路}路from路"@
+/store/settingStore";
+     4    鈹?- import路{
+路Button路}路from路"@/ui/b
+utton";
+     5    鈹?- import路{
+路cn路}路from路"@/utils";
+     6    鈹?- import路{
+路useState路}路from路"reac
+t";
+     7    鈹?- import路{
+路createHighlighter路}路f
+rom路"shiki/bundle/web"
+;
+        1 鈹?+ import路{
+路useState路}路from路"reac
+t";
+        2 鈹?+ import路{
+路createHighlighter路}路f
+rom路"shiki/bundle/web"
+;
+        3 鈹?+ import路{
+路Icon路}路from路"@/compon
+ents/icon";
+        4 鈹?+ import路{
+路useCopyToClipboard路}路
+from路"@/hooks";
+        5 鈹?+ import路{
+路useSettings路}路from路"@
+/store/settingStore";
+        6 鈹?+ import路{
+路Button路}路from路"@/ui/b
+utton";
+        7 鈹?+ import路{
+路cn路}路from路"@/utils";
+     8  8 鈹?  import t
+ype { HighlightCodePro
+ps } from ".";
+     9  9 鈹?  
+  
+
+src\components\code\hi
+ghlight-code.tsx:21:3 
+lint/a11y/noStaticElem
+entInteractions 鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+
+  脳 Static Elements sh
+ould not be interactiv
+e.
+  
+    20 鈹?	return (
+  > 21 鈹?		<div
+       鈹?		^^^^
+  > 22 鈹?			className=
+{cn("w-full relative g
+roup", className)}
+  > 23 鈹?			onMouseEnt
+er={() => setHovered(t
+rue)}
+  > 24 鈹?			onMouseLea
+ve={() => setHovered(f
+alse)}
+  > 25 鈹?		>
+       鈹?		^
+    26 鈹?			{withCopy 
+&& hovered && (
+    27 鈹?				<Button v
+ariant="outline" size=
+"icon" className="abso
+lute top-2 right-2 bg-
+accent" onClick={() =>
+ copyFn(code)}>
+  
+  i To add interactivi
+ty such as a mouse or 
+key event listener to 
+a static element, give
+ the element an approp
+riate role value.
+  
+
+src\components\editor\
+editor.css format 鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+
+  脳 Formatter would ha
+ve printed the followi
+ng content:
+  
+      1     鈹?- /*路Edi
+tor路Styles路*/鈵?      2
+     鈹?- .editor-wrapp
+er路{鈵?      3     鈹?- 
+路路overflow:路hidden;鈵? 
+     4     鈹?- 路路posit
+ion:路relative;鈵?      
+5     鈹?- 路路border-rad
+ius:路8px;鈵?      6    
+ 鈹?- 路路border:路1px路sol
+id路rgba(145,路158,路171,
+路0.2);鈵?      7     鈹?
+- }鈵?      8     鈹?- 鈵
+?      9     鈹?- .edit
+or-wrapper路h1路{鈵?     
+10     鈹?- 路路font-size
+:路64px;鈵?     11     鈹
+?- 路路line-height:路1.25
+;鈵?     12     鈹?- 路路f
+ont-weight:路800;鈵?    
+ 13     鈹?- }鈵?     14
+     鈹?- 鈵?     15    
+ 鈹?- .editor-wrapper路h
+2路{鈵?     16     鈹?- 路
+路font-size:路56px;鈵?   
+  17     鈹?- 路路line-he
+ight:路1.25;鈵?     18  
+   鈹?- 路路font-weight:路
+800;鈵?     19     鈹?- 
+}鈵?     20     鈹?- 鈵? 
+    21     鈹?- .editor
+-wrapper路h3路{鈵?     22
+     鈹?- 路路font-size:路
+48px;鈵?     23     鈹?-
+ 路路line-height:路1.25;鈵
+?     24     鈹?- 路路fon
+t-weight:路700;鈵?     2
+5     鈹?- }鈵?     26  
+   鈹?- 鈵?     27     鈹
+?- .editor-wrapper路h4路
+{鈵?     28     鈹?- 路路f
+ont-size:路40px;鈵?     
+29     鈹?- 路路line-heig
+ht:路1.25;鈵?     30    
+ 鈹?- 路路font-weight:路70
+0;鈵?     31     鈹?- }鈵
+?     32     鈹?- 鈵?   
+  33     鈹?- .editor-w
+rapper路h5路{鈵?     34  
+   鈹?- 路路font-size:路32
+px;鈵?     35     鈹?- 路
+路line-height:路1.25;鈵? 
+    36     鈹?- 路路font-
+weight:路700;鈵?     37 
+    鈹?- }鈵?     38    
+ 鈹?- 鈵?     39     鈹?-
+ .editor-wrapper路h6路{鈵
+?     40     鈹?- 路路fon
+t-size:路24px;鈵?     41
+     鈹?- 路路line-height
+:路1.25;鈵?     42     鈹
+?- 路路font-weight:路600;
+鈵?     43     鈹?- }鈵? 
+    44     鈹?- 鈵?     
+45     鈹?- .editor-wra
+pper路img路{鈵?     46   
+  鈹?- 路路display:路inlin
+e;鈵?     47     鈹?- }鈵
+?     48     鈹?- 鈵?   
+  49     鈹?- .editor-w
+rapper路.ql-container.q
+l-snow路{鈵?     50     
+鈹?- 路路border:路none;鈵? 
+    51     鈹?- 路路line-
+height:路1.6;鈵?     52 
+    鈹?- 路路font-weight:
+路400;鈵?     53     鈹?-
+ 路路font-size:路0.875rem
+;鈵?     54     鈹?- }鈵?
+     55     鈹?- 鈵?    
+ 56     鈹?- .editor-wr
+apper路.ql-editor路{鈵?  
+   57     鈹?- 路路min-he
+ight:路160px;鈵?     58 
+    鈹?- 路路max-height:路
+640px;鈵?     59     鈹?
+- 路路background-color:路
+rgba(145,路158,路171,路0.
+08);鈵?     60     鈹?- 
+}鈵?     61     鈹?- 鈵? 
+    62     鈹?- .editor
+-wrapper路.ql-editor.ql
+-blank::before路{鈵?    
+ 63     鈹?- 路路font-sty
+le:路normal;鈵?     64  
+   鈹?- 路路color:路#919ea
+b;路/*路text-secondary路*
+/鈵?     65     鈹?- }鈵?
+     66     鈹?- 鈵?    
+ 67     鈹?- .editor-wr
+apper路.ql-editor路pre.q
+l-syntax路{鈵?     68   
+  鈹?- 路路border-radius:
+路8px;鈵?     69     鈹?-
+ 路路line-height:路1.5714
+3;鈵?     70     鈹?- 路路
+font-size:路0.875rem;鈵?
+     71     鈹?- 路路font
+-family:路'Public路Sans'
+,路sans-serif;鈵?     72
+     鈹?- 路路font-weight
+:路400;鈵?     73     鈹?
+- 路路padding:路16px;鈵?  
+   74     鈹?- 路路backgr
+ound-color:路#f4f6f8;路/
+*路background-neutral路*
+/鈵?     75     鈹?- }鈵?
+     76     鈹?- 鈵?    
+ 77     鈹?- /*路Toolbar
+路Styles路*/鈵?     78   
+  鈹?- .editor-toolbar路
+.ql-snow.ql-toolbar路{鈵
+?     79     鈹?- 路路bor
+der:路none;鈵?     80   
+  鈹?- 路路border-bottom:
+路1px路solid路rgba(145,路1
+58,路171,路0.2);鈵?     8
+1     鈹?- }鈵?     82  
+   鈹?- 鈵?     83     鈹
+?- .editor-toolbar路.ql
+-snow.ql-toolbar路butto
+n路{鈵?     84     鈹?- 路
+路padding:路0;鈵?     85 
+    鈹?- 路路display:路fle
+x;鈵?     86     鈹?- 路路
+align-items:路center;鈵?
+     87     鈹?- 路路just
+ify-content:路center;鈵?
+     88     鈹?- 路路bord
+er-radius:路4px;鈵?     
+89     鈹?- }鈵?     90 
+    鈹?- 鈵?     91     
+鈹?- .editor-toolbar路.q
+l-snow.ql-toolbar路butt
+on路svg,鈵?     92     鈹
+?- .editor-toolbar路.ql
+-snow.ql-toolbar路span路
+svg路{鈵?     93     鈹?-
+ 路路width:路20px;鈵?     
+94     鈹?- 路路height:路2
+0px;鈵?     95     鈹?- 
+}鈵?     96     鈹?- 鈵? 
+    97     鈹?- .editor
+-toolbar路.ql-snow.ql-t
+oolbar路.ql-picker-labe
+l路{鈵?     98     鈹?- 路
+路border-radius:路4px;鈵?
+     99     鈹?- 路路bord
+er-color:路transparent路
+!important;鈵?    100  
+   鈹?- 路路background-co
+lor:路#ffffff;路/*路backg
+round-paper路*/鈵?    10
+1     鈹?- 路路color:路#21
+2b36;路/*路text-primary路
+*/鈵?    102     鈹?- }鈵
+?    103     鈹?- 鈵?   
+ 104     鈹?- .editor-t
+oolbar路.ql-snow.ql-too
+lbar路.ql-picker-option
+s路{鈵?    105     鈹?- 路
+路margin-top:路4px;鈵?   
+ 106     鈹?- 路路border:
+路none;鈵?    107     鈹?
+- 路路max-height:路200px;
+鈵?    108     鈹?- 路路ov
+erflow:路auto;鈵?    109
+     鈹?- 路路border-radi
+us:路8px;鈵?    110     
+鈹?- 路路color:路#212b36;路
+/*路text-primary路*/鈵?  
+  111     鈹?- 路路backgr
+ound-color:路#ffffff;路/
+*路background-paper路*/鈵
+?    112     鈹?- 路路box
+-shadow:路0路0路2px路0路rgb
+a(145,路158,路171,路0.24)
+,路-20px路20px路40px路-4px
+路rgba(145,路158,路171,路0
+.24);鈵?    113     鈹?-
+ }鈵?    114     鈹?- 鈵?
+    115     鈹?- /*路Bas
+e路Styles路*/鈵?    116  
+   鈹?- .editor-toolbar
+路.ql-stroke路{鈵?    117
+     鈹?- 路路stroke:路#21
+2b36;路/*路text-primary路
+*/鈵?    118     鈹?- }鈵
+?    119     鈹?- 鈵?   
+ 120     鈹?- .editor-t
+oolbar路.ql-fill,鈵?    
+121     鈹?- .editor-to
+olbar路.ql-stroke.ql-fi
+ll路{鈵?    122     鈹?- 
+路路fill:路#212b36;路/*路te
+xt-primary路*/鈵?    123
+     鈹?- }鈵?    124   
+  鈹?- 鈵?    125     鈹?
+- /*路Active/Hover路Stat
+es路*/鈵?    126     鈹?-
+ .editor-toolbar路.ql-s
+now.ql-toolbar路button:
+hover路.ql-fill,鈵?    1
+27     鈹?- .editor-too
+lbar路.ql-snow.ql-toolb
+ar路button:focus路.ql-fi
+ll,鈵?    128     鈹?- .
+editor-toolbar路.ql-sno
+w.ql-toolbar路button.ql
+-active路.ql-fill,鈵?   
+ 129     鈹?- .editor-t
+oolbar路.ql-snow.ql-too
+lbar路.ql-picker-label:
+hover路.ql-fill,鈵?    1
+30     鈹?- .editor-too
+lbar路.ql-snow.ql-toolb
+ar路.ql-picker-label.ql
+-active路.ql-fill,鈵?   
+ 131     鈹?- .editor-t
+oolbar路.ql-snow.ql-too
+lbar路.ql-picker-item:h
+over路.ql-fill,鈵?    13
+2     鈹?- .editor-tool
+bar路.ql-snow.ql-toolba
+r路.ql-picker-item.ql-s
+elected路.ql-fill,鈵?   
+ 133     鈹?- .editor-t
+oolbar路.ql-snow.ql-too
+lbar路button:hover路.ql-
+stroke.ql-fill,鈵?    1
+34     鈹?- .editor-too
+lbar路.ql-snow.ql-toolb
+ar路button:focus路.ql-st
+roke.ql-fill,鈵?    135
+     鈹?- .editor-toolb
+ar路.ql-snow.ql-toolbar
+路button.ql-active路.ql-
+stroke.ql-fill,鈵?    1
+36     鈹?- .editor-too
+lbar路.ql-snow.ql-toolb
+ar路.ql-picker-label:ho
+ver路.ql-stroke.ql-fill
+,鈵?    137     鈹?- .ed
+itor-toolbar路.ql-snow.
+ql-toolbar路.ql-picker-
+label.ql-active路.ql-st
+roke.ql-fill,鈵?    138
+     鈹?- .editor-toolb
+ar路.ql-snow.ql-toolbar
+路.ql-picker-item:hover
+路.ql-stroke.ql-fill,鈵?
+    139     鈹?- .edito
+r-toolbar路.ql-snow.ql-
+toolbar路.ql-picker-ite
+m.ql-selected路.ql-stro
+ke.ql-fill路{鈵?    140 
+    鈹?- 路路fill:路#00a76
+f;路/*路primary-main路*/鈵
+?    141     鈹?- }鈵?  
+  142     鈹?- 鈵?    14
+3     鈹?- .editor-tool
+bar路.ql-snow.ql-toolba
+r路button:hover,鈵?    1
+44     鈹?- .editor-too
+lbar路.ql-snow.ql-toolb
+ar路button:focus,鈵?    
+145     鈹?- .editor-to
+olbar路.ql-snow.ql-tool
+bar路button.ql-active,鈵
+?    146     鈹?- .edit
+or-toolbar路.ql-snow.ql
+-toolbar路.ql-picker-la
+bel:hover,鈵?    147   
+  鈹?- .editor-toolbar路
+.ql-snow.ql-toolbar路.q
+l-picker-label.ql-acti
+ve,鈵?    148     鈹?- .
+editor-toolbar路.ql-sno
+w.ql-toolbar路.ql-picke
+r-item:hover,鈵?    149
+     鈹?- .editor-toolb
+ar路.ql-snow.ql-toolbar
+路.ql-picker-item.ql-se
+lected路{鈵?    150     
+鈹?- 路路color:路#00a76f;路
+/*路primary-main路*/鈵?  
+191 more lines truncat
+ed
+  
+
+src\components\icon\ic
+on.tsx:1:1 assist/sour
+ce/organizeImports  FI
+XABLE  鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹?
+  脳 The imports and ex
+ports are not sorted.
+  
+  > 1 鈹?import { cn } 
+from "@/utils";
+      鈹?^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
+    2 鈹?import { Icon 
+as IconifyIcon } from 
+"@iconify/react";
+    3 鈹?import type { 
+IconProps as IconifyIc
+onProps } from "@iconi
+fy/react";
+  
+  i Safe fix: Organize
+ Imports (Biome)
+  
+     1    鈹?- import路{
+路cn路}路from路"@/utils";
+        1 鈹?+ import路t
+ype路{路IconProps路as路Ico
+nifyIconProps路}路from路"
+@iconify/react";
+     2  2 鈹?  import {
+ Icon as IconifyIcon }
+ from "@iconify/react"
+;
+     3    鈹?- import路t
+ype路{路IconProps路as路Ico
+nifyIconProps路}路from路"
+@iconify/react";
+     4    鈹?- import路t
+ype路{路CSSProperties路}路
+from路"react";
+        3 鈹?+ import路t
+ype路{路CSSProperties路}路
+from路"react";
+        4 鈹?+ import路{
+路cn路}路from路"@/utils";
+     5  5 鈹?  
+     6  6 鈹?  interfac
+e IconProps extends Ic
+onifyIconProps {
+  
+
+src\components\loading
+\line-loading.css form
+at 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+  脳 Formatter would ha
+ve printed the followi
+ng content:
+  
+     1  1 鈹?  @keyfram
+es loading {
+     2    鈹?- 路路0%路{
+     3    鈹?- 路路路路tran
+sform:路translateX(-100
+%);
+     4    鈹?- 路路}
+     5    鈹?- 路路100%路{
+     6    鈹?- 路路路路tran
+sform:路translateX(400%
+);
+     7    鈹?- 路路}
+        2 鈹?+ 鈫?0%路{
+        3 鈹?+ 鈫?鈫?tran
+sform:路translateX(-100
+%);
+        4 鈹?+ 鈫?}
+        5 鈹?+ 鈫?100%路{
+        6 鈹?+ 鈫?鈫?tran
+sform:路translateX(400%
+);
+        7 鈹?+ 鈫?}
+     8  8 鈹?  }
+     9  9 鈹?  
+    10 10 鈹?  .animate
+-loading {
+    11    鈹?- 路路animat
+ion:路loading路1.5s路ease
+-in-out路infinite;
+    12    鈹?- }路
+       11 鈹?+ 鈫?animat
+ion:路loading路1.5s路ease
+-in-out路infinite;
+       12 鈹?+ }
+       13 鈹?+ 
+  
+
+The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
+Diagnostics not shown: 78.
+Checked 258 files in 63ms. No fixes applied.
+Found 84 errors.
+Found 12 warnings.
+check 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+
+  脳 Some errors were e
+mitted while running c
+hecks.
+  
+

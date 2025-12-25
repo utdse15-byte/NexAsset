@@ -1,0 +1,316 @@
+src\components\auth\auth-guard.tsx:77:21 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━━━━━
+
+  i This fragment is unnecessary.
+  
+    75 │ 				: true;
+    76 │ 
+  > 77 │ 	return hasAccess ? <>{children}</> : <>{fallback}</>;
+       │ 	                   ^^^^^^^^^^^^^^^
+    78 │ };
+    79 │ 
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    77 │ → return·hasAccess·?·<>{children}</>·:·<>{fallback}</>;
+       │                      ---        ----                   
+
+src\components\auth\auth-guard.tsx:77:39 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━━━━━
+
+  i This fragment is unnecessary.
+  
+    75 │ 				: true;
+    76 │ 
+  > 77 │ 	return hasAccess ? <>{children}</> : <>{fallback}</>;
+       │ 	                                     ^^^^^^^^^^^^^^^
+    78 │ };
+    79 │ 
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    77 │ → return·hasAccess·?·<>{children}</>·:·<>{fallback}</>;
+       │                                        ---        ---- 
+
+src\components\avatar-group\index.tsx:64:54 suppressions/incorrect ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    62 │ 		<div className="flex -space-x-3">
+    63 │ 			{displayAvatars.map((child, idx) => (
+  > 64 │ 				// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+       │ 				                                                 ^^^^^^^^^^^^^
+    65 │ 				<div key={idx}>{cloneAvatarWithSize(child)}</div>
+    66 │ 			))}
+  
+
+src\components\avatar-group\index.tsx:79:58 suppressions/incorrect ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    77 │ 						<div className="flex gap-1">
+    78 │ 							{extraAvatars.map((child, idx) => (
+  > 79 │ 								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+       │ 								                                                 ^^^^^^^^^^^^^
+    80 │ 								<div key={idx}>{cloneAvatarWithSize(child)}</div>
+    81 │ 							))}
+  
+
+src\components\code\highlight-code.tsx:32:62 suppressions/incorrect ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    30 │ 			)}
+    31 │ 			<div
+  > 32 │ 				// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+       │ 				                                                         ^^^^^^^^^^^^^
+    33 │ 				dangerouslySetInnerHTML={{
+    34 │ 					__html: highlighter.codeToHtml(code, {
+  
+
+src\layouts\components\search-bar.tsx:29:55 suppressions/incorrect ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    27 │ 			{parts.map((part, i) =>
+    28 │ 				part.toLowerCase() === query.toLowerCase() ? (
+  > 29 │ 					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+       │ 					                                                 ^^^^^^^^^^^^^
+    30 │ 					<span key={i} className="text-primary">
+    31 │ 						{part}
+  
+
+src\layouts\dashboard\multi-tabs\hooks\use-tab-operations.ts:76:18 lint/complexity/useDateNow  FIXABLE  ━━━━━━━━━━
+
+  ! Use Date.now() instead of new Date().getTime().
+  
+    74 │ 					newTabs[index] = {
+    75 │ 						...newTabs[index],
+  > 76 │ 						timeStamp: new Date().getTime().toString(),
+       │ 						           ^^^^^^^^^^^^^^^^^^^^
+    77 │ 					};
+    78 │ 				}
+  
+  i Date.now() is more readable and also avoids unnecessary instantiation of Date object.
+  
+  i Unsafe fix: Replace with Date.now().
+  
+    74 74 │   					newTabs[index] = {
+    75 75 │   						...newTabs[index],
+    76    │ - → → → → → → timeStamp:·new·Date().getTime().toString(),
+       76 │ + → → → → → → timeStamp:·Date.now().toString(),
+    77 77 │   					};
+    78 78 │   				}
+  
+
+src\layouts\dashboard\multi-tabs\providers\multi-tabs-provider.tsx:28:62 suppressions/incorrect ━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    26 │ 	};
+    27 │ 
+  > 28 │ 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+       │ 	                                                            ^^^^^^^^^^^^^
+    29 │ 	const activeTabRoutePath = useMemo(() => {
+    30 │ 		if (!currentRouteMeta) return "";
+  
+
+src\layouts\dashboard\multi-tabs\providers\multi-tabs-provider.tsx:37:62 suppressions/incorrect ━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    35 │ 	const operations = useTabOperations(tabs, setTabs, activeTabRoutePath);
+    36 │ 
+  > 37 │ 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+       │ 	                                                            ^^^^^^^^^^^^^
+    38 │ 	useEffect(() => {
+    39 │ 		if (!currentRouteMeta) return;
+  
+
+src\layouts\dashboard\multi-tabs\providers\multi-tabs-provider.tsx:54:18 lint/complexity/useDateNow  FIXABLE  ━━━━━━━━━━
+
+  ! Use Date.now() instead of new Date().getTime().
+  
+    52 │ 						key,
+    53 │ 						children,
+  > 54 │ 						timeStamp: new Date().getTime().toString(),
+       │ 						           ^^^^^^^^^^^^^^^^^^^^
+    55 │ 					},
+    56 │ 				];
+  
+  i Date.now() is more readable and also avoids unnecessary instantiation of Date object.
+  
+  i Unsafe fix: Replace with Date.now().
+  
+    52 52 │   						key,
+    53 53 │   						children,
+    54    │ - → → → → → → timeStamp:·new·Date().getTime().toString(),
+       54 │ + → → → → → → timeStamp:·Date.now().toString(),
+    55 55 │   					},
+    56 56 │   				];
+  
+
+src\pages\components\animate\views\scroll\container.tsx:20:54 suppressions/incorrect ━━━━━━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    18 │ 		>
+    19 │ 			{[...Array(40)].map((_, index) => (
+  > 20 │ 				// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+       │ 				                                                 ^^^^^^^^^^^^^
+    21 │ 				<MotionViewport key={index} variants={varients} className="mt-4">
+    22 │ 					<Card>
+  
+
+src\pages\components\scroll\views\scroll-progress\index.tsx:30:57 suppressions/incorrect ━━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    28 │ 					<div ref={containerProgress.elementRef} className="h-80 overflow-auto">
+    29 │ 						{[...Array(4)].map((_, index) => (
+  > 30 │ 							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+       │ 							                                                 ^^^^^^^^^^^^^
+    31 │ 							<div key={index}>{TEXT}</div>
+    32 │ 						))}
+  
+
+src\pages\dashboard\assets\detail.tsx:14:44 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    12 │ 	const { data: asset, isLoading } = useQuery({
+    13 │ 		queryKey: ["asset", id],
+  > 14 │ 		queryFn: () => assetService.getAssetById(id!),
+       │ 		                                         ^^^
+    15 │ 		enabled: !!id,
+    16 │ 	});
+  
+
+src\components\code\highlight-code.tsx:21:3 lint/a11y/noStaticElementInteractions ━━━━━━━━━━━━━━━━━━
+
+  × Static Elements should not be interactive.
+  
+    20 │ 	return (
+  > 21 │ 		<div
+       │ 		^^^^
+  > 22 │ 			className={cn("w-full relative group", className)}
+  > 23 │ 			onMouseEnter={() => setHovered(true)}
+  > 24 │ 			onMouseLeave={() => setHovered(false)}
+  > 25 │ 		>
+       │ 		^
+    26 │ 			{withCopy && hovered && (
+    27 │ 				<Button variant="outline" size="icon" className="absolute top-2 right-2 bg-accent" onClick={() => copyFn(code)}>
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+src\components\nav\components\nav-item-render.tsx:24:4 lint/a11y/noStaticElementInteractions ━━━━━━━━━━
+
+  × Static Elements should not be interactive.
+  
+    22 │ 		// Vertical nav items with children are clickable containers
+    23 │ 		return (
+  > 24 │ 			<div className={className} onClick={onClick}>
+       │ 			^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    25 │ 				{children}
+    26 │ 			</div>
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+src\components\nav\vertical\nav-group.tsx:32:4 lint/a11y/noStaticElementInteractions ━━━━━━━━━━━━━━━
+
+  × Static Elements should not be interactive.
+  
+    30 │ 	return (
+    31 │ 		name && (
+  > 32 │ 			<div
+       │ 			^^^^
+  > 33 │ 				className={cn(
+        ...
+  > 37 │ 				onClick={() => onClick(!open)}
+  > 38 │ 			>
+       │ 			^
+    39 │ 				<Icon
+    40 │ 					icon="eva:arrow-ios-forward-fill"
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+src\layouts\components\setting-button.tsx:264:10 lint/a11y/noStaticElementInteractions ━━━━━━━━━━━━━
+
+  × Static Elements should not be interactive.
+  
+    262 │ 							<div className="flex flex-wrap gap-1">
+    263 │ 								{Object.entries(presetsColors).map(([preset, color]) => (
+  > 264 │ 									<div
+        │ 									^^^^
+  > 265 │ 										key={preset}
+         ...
+  > 271 │ 										onClick={() => updateSettings({ themeColorPresets: preset as ThemeColorPresets })}
+  > 272 │ 									>
+        │ 									^
+    273 │ 										<div
+    274 │ 											className={cn(
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+src\layouts\components\setting-button.tsx:350:7 lint/a11y/useAriaPropsSupportedByRole ━━━━━━━━━━━━━━
+
+  × The ARIA attribute 'aria-label' is not supported by this element.
+  
+    348 │ 						onClick={toggleFullScreen}
+    349 │ 					>
+  > 350 │ 						<div
+        │ 						^^^^
+  > 351 │ 							className="flex items-center justify-center"
+  > 352 │ 							aria-label={isFullscreen ? t("sys.settings.exitFullscreen") : t("sys.settings.fullscreen")}
+  > 353 │ 						>
+        │ 						^
+    354 │ 							{isFullscreen ? (
+    355 │ 								<>
+  
+  i Ensure that ARIA attributes are valid for the role of the element.
+  
+
+src\pages\components\animate\views\background\toolbar.tsx:8:3 lint/a11y/noStaticElementInteractions ━━━━━━━━━━
+
+  × Static Elements should not be interactive.
+  
+     6 │ export default function Toolbar({ onRefresh }: Props) {
+     7 │ 	return (
+   > 8 │ 		<div className="mb-4 flex items-center justify-end" onClick={onRefresh}>
+       │ 		^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     9 │ 			<Icon icon="material-symbols:refresh" className="cursor-pointer" size={24} />
+    10 │ 		</div>
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+src\pages\components\animate\views\scroll\toolbar.tsx:8:3 lint/a11y/noStaticElementInteractions ━━━━━━━━━━
+
+  × Static Elements should not be interactive.
+  
+     6 │ export default function Toolbar({ onRefresh }: Props) {
+     7 │ 	return (
+   > 8 │ 		<div className="mb-4 flex items-center justify-end" onClick={onRefresh}>
+       │ 		^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     9 │ 			<Icon icon="material-symbols:refresh" className="cursor-pointer" size={24} />
+    10 │ 		</div>
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
+Diagnostics not shown: 2.
+Checked 265 files in 54ms. No fixes applied.
+Found 8 errors.
+Found 12 warnings.
+lint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+

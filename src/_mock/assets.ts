@@ -1,0 +1,342 @@
+import { faker } from "@faker-js/faker";
+import type { Consumable, Menu, Permission, PurchaseRequest, Role, User } from "#/entity";
+import { BasicStatus, PermissionType } from "#/enum";
+
+const { GROUP, MENU } = PermissionType;
+
+export const DB_MENU: Menu[] = [
+	// group_dashboard
+	{
+		id: "dashboard",
+		parentId: "",
+		name: "sys.nav.dashboard",
+		code: "dashboard",
+		type: GROUP,
+	},
+	{
+		id: "dashboard_workbench",
+		parentId: "dashboard",
+		name: "sys.nav.workbench",
+		code: "dashboard:workbench",
+		icon: "local:ic-workbench",
+		type: MENU,
+		path: "/dashboard/workbench",
+		component: "/pages/dashboard/workbench",
+	},
+	{
+		id: "dashboard_analysis",
+		parentId: "dashboard",
+		name: "sys.nav.analysis",
+		code: "dashboard:analysis",
+		icon: "local:ic-analysis",
+		type: MENU,
+		path: "/dashboard/analysis",
+		component: "/pages/dashboard/analysis",
+	},
+
+	// group_assets
+	{
+		id: "assets",
+		parentId: "",
+		name: "sys.nav.assets.index",
+		code: "assets",
+		type: GROUP,
+	},
+	{
+		id: "assets_analysis",
+		parentId: "assets",
+		name: "sys.nav.assets.analysis",
+		code: "assets:analysis",
+		icon: "solar:chart-2-bold-duotone",
+		type: MENU,
+		path: "/assets/analysis",
+		component: "/pages/dashboard/assets/analysis",
+	},
+	{
+		id: "assets_inventory",
+		parentId: "assets",
+		name: "sys.nav.assets.inventory",
+		code: "assets:inventory",
+		icon: "solar:laptop-bold-duotone",
+		type: MENU,
+		path: "/assets/inventory",
+		component: "/pages/dashboard/assets/inventory",
+	},
+	{
+		id: "assets_create",
+		parentId: "assets",
+		name: "sys.nav.assets.create",
+		code: "assets:create",
+		icon: "solar:add-circle-bold-duotone",
+		type: MENU,
+		path: "/assets/create",
+		component: "/pages/dashboard/assets/create",
+	},
+	{
+		id: "assets_detail",
+		parentId: "assets",
+		name: "sys.nav.assets.detail",
+		code: "assets:detail",
+		type: MENU,
+		path: "/assets/detail/:id",
+		component: "/pages/dashboard/assets/detail",
+		hidden: true, // Hidden from menu, but route exists
+	},
+	{
+		id: "assets_consumables",
+		parentId: "assets",
+		name: "sys.nav.assets.consumables",
+		code: "assets:consumables",
+		icon: "solar:box-bold-duotone",
+		type: MENU,
+		path: "/assets/consumables",
+		component: "/pages/dashboard/assets/consumables",
+	},
+	{
+		id: "assets_purchase",
+		parentId: "assets",
+		name: "sys.nav.assets.purchase",
+		code: "assets:purchase",
+		icon: "solar:bill-list-bold-duotone",
+		type: MENU,
+		path: "/assets/purchase",
+		component: "/pages/dashboard/assets/purchase",
+	},
+
+	// group_reports
+	{
+		id: "reports",
+		parentId: "",
+		name: "sys.nav.reports.index",
+		code: "reports",
+		type: GROUP,
+	},
+	{
+		id: "reports_audit",
+		parentId: "reports",
+		name: "sys.nav.reports.audit",
+		code: "reports:audit",
+		icon: "solar:clipboard-list-bold-duotone",
+		type: MENU,
+		path: "/reports/audit",
+		component: "/pages/reports/audit",
+	},
+
+	// group_system
+	{
+		id: "system",
+		parentId: "",
+		name: "sys.nav.system.index",
+		code: "system",
+		type: GROUP,
+	},
+	{
+		id: "system_user",
+		parentId: "system",
+		name: "sys.nav.system.user",
+		code: "system:user",
+		icon: "solar:user-id-bold-duotone",
+		type: MENU,
+		path: "/management/system/user",
+		component: "/pages/management/system/user",
+	},
+	{
+		id: "system_user_detail",
+		parentId: "system",
+		name: "sys.nav.system.user_detail",
+		code: "system:user:detail",
+		type: MENU,
+		path: "/management/system/user/:id",
+		component: "/pages/management/system/user/detail",
+		hidden: true,
+	},
+	{
+		id: "user_profile",
+		parentId: "system",
+		name: "sys.nav.user.profile",
+		code: "user:profile",
+		type: MENU,
+		path: "/management/user/profile",
+		component: "/pages/management/user/profile",
+		hidden: true,
+	},
+	{
+		id: "user_account",
+		parentId: "system",
+		name: "sys.nav.user.account",
+		code: "user:account",
+		type: MENU,
+		path: "/management/user/account",
+		component: "/pages/management/user/account",
+		hidden: true,
+	},
+	{
+		id: "system_department",
+		parentId: "system",
+		name: "sys.nav.system.department",
+		code: "system:department",
+		icon: "solar:users-group-two-rounded-bold-duotone",
+		type: MENU,
+		path: "/management/system/department",
+		component: "/pages/management/system/department",
+	},
+];
+
+export const DB_USER: User[] = [
+	{
+		id: "user_admin_id",
+		username: "admin",
+		password: "demo1234",
+		avatar: faker.image.avatarGitHub(),
+		email: "admin@nexasset.com",
+		role: { id: "role_admin_id", name: "admin", code: "SUPER_ADMIN" },
+		status: BasicStatus.ENABLE,
+	},
+	{
+		id: "user_test_id",
+		username: "test",
+		password: "demo1234",
+		avatar: faker.image.avatarGitHub(),
+		email: "test@nexasset.com",
+		role: { id: "role_test_id", name: "test", code: "TEST" },
+		status: BasicStatus.ENABLE,
+	},
+	{
+		id: "user_guest_id",
+		username: "guest",
+		password: "demo1234",
+		avatar: faker.image.avatarGitHub(),
+		email: "guest@nexasset.com",
+		role: { id: "role_test_id", name: "test", code: "TEST" },
+		status: BasicStatus.DISABLE,
+	},
+];
+
+export const DB_ROLE: Role[] = [
+	{ id: "role_admin_id", name: "admin", code: "SUPER_ADMIN" },
+	{ id: "role_test_id", name: "test", code: "TEST" },
+];
+
+export const DB_PERMISSION: Permission[] = [
+	{ id: "permission_create", name: "permission-create", code: "permission:create" },
+	{ id: "permission_read", name: "permission-read", code: "permission:read" },
+	{ id: "permission_update", name: "permission-update", code: "permission:update" },
+	{ id: "permission_delete", name: "permission-delete", code: "permission:delete" },
+];
+
+export const DB_USER_ROLE = [
+	{ id: "user_admin_role_admin", userId: "user_admin_id", roleId: "role_admin_id" },
+	{ id: "user_test_role_test", userId: "user_test_id", roleId: "role_test_id" },
+];
+
+export const DB_ROLE_PERMISSION = [
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_create" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_read" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_update" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_delete" },
+
+	{ id: faker.string.uuid(), roleId: "role_test_id", permissionId: "permission_read" },
+	{ id: faker.string.uuid(), roleId: "role_test_id", permissionId: "permission_update" },
+];
+
+export const DB_CONSUMABLES: Consumable[] = [
+	{
+		id: faker.string.uuid(),
+		name: "Printer Paper A4",
+		category: "Office Supplies",
+		model: "Standard 80gsm",
+		unitPrice: 5.0,
+		quantity: 500,
+		threshold: 50,
+		status: "in_stock",
+	},
+	{
+		id: faker.string.uuid(),
+		name: "HDMI Cable 2m",
+		category: "Peripherals",
+		model: "Gold Plated",
+		unitPrice: 12.5,
+		quantity: 15,
+		threshold: 10,
+		status: "in_stock",
+	},
+	{
+		id: faker.string.uuid(),
+		name: "Black Ink Cartridge",
+		category: "Office Supplies",
+		model: "HP 65XL",
+		unitPrice: 45.0,
+		quantity: 3,
+		threshold: 5,
+		status: "low_stock",
+	},
+	{
+		id: faker.string.uuid(),
+		name: "USB-C Hub",
+		category: "Peripherals",
+		model: "7-in-1 Adapter",
+		unitPrice: 35.0,
+		quantity: 0,
+		threshold: 5,
+		status: "out_of_stock",
+	},
+];
+
+export const DB_PURCHASE_REQUESTS: PurchaseRequest[] = [
+	{
+		id: faker.string.uuid(),
+		requestDate: faker.date.recent({ days: 2 }).toISOString(),
+		requesterId: "user_test_id",
+		requesterName: "Test User",
+		itemName: "MacBook Pro M3",
+		category: "Computer",
+		quantity: 1,
+		estimatedPrice: 2000,
+		totalPrice: 2000,
+		reason: "New hire equipment",
+		status: "pending",
+	},
+	{
+		id: faker.string.uuid(),
+		requestDate: faker.date.recent({ days: 5 }).toISOString(),
+		requesterId: "user_admin_id",
+		requesterName: "Admin User",
+		itemName: "Ergonomic Chair",
+		category: "Furniture",
+		quantity: 2,
+		estimatedPrice: 300,
+		totalPrice: 600,
+		reason: "Office upgrade",
+		status: "approved",
+		approvedBy: "Manager",
+	},
+	{
+		id: faker.string.uuid(),
+		requestDate: faker.date.past().toISOString(),
+		requesterId: "user_test_id",
+		requesterName: "Test User",
+		itemName: "Gaming Mouse",
+		category: "Peripherals",
+		quantity: 1,
+		estimatedPrice: 80,
+		totalPrice: 80,
+		reason: "Personal preference",
+		status: "rejected",
+		approvedBy: "Manager",
+	},
+	{
+		id: faker.string.uuid(),
+		requestDate: faker.date.recent({ days: 10 }).toISOString(),
+		requesterId: "user_admin_id",
+		requesterName: "Admin User",
+		itemName: "Dell Monitor 27",
+		category: "Peripherals",
+		quantity: 5,
+		estimatedPrice: 250,
+		totalPrice: 1250,
+		reason: "Design team expansion",
+		status: "ordered",
+		approvedBy: "Manager",
+		orderDate: faker.date.recent({ days: 2 }).toISOString(),
+	},
+];

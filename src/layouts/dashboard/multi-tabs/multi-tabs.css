@@ -1,0 +1,36 @@
+/* MultiTabs Styles */
+.multi-tabs-wrapper {
+	height: 100%;
+	margin-top: 2px;
+}
+
+.multi-tabs-wrapper .anticon {
+	margin: 0px !important;
+}
+
+.multi-tabs-wrapper .ant-tabs {
+	height: 100%;
+}
+
+.multi-tabs-wrapper .ant-tabs .ant-tabs-content {
+	height: 100%;
+}
+
+.multi-tabs-wrapper .ant-tabs .ant-tabs-tabpane {
+	height: 100%;
+}
+
+.multi-tabs-wrapper .ant-tabs .ant-tabs-tabpane > div {
+	height: 100%;
+}
+
+.multi-tabs-wrapper .hide-scrollbar {
+	overflow: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	will-change: transform;
+}
+
+.multi-tabs-wrapper .hide-scrollbar::-webkit-scrollbar {
+	display: none;
+}

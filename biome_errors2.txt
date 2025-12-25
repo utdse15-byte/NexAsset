@@ -1,0 +1,333 @@
+﻿鈥塛ARN鈥?Unsupported engine: wanted: {"node":"20.*"} (current: {"node":"v24.11.0","pnpm":"10.8.0"})
+node.exe : src\compone
+nts\code\highlight-cod
+e.tsx:21:3 lint/a11y/n
+oStaticElementInteract
+ions 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣
+所在位置 C:\Users\Administ
+rator\AppData\Roaming\
+npm\pnpm.ps1:24 字符: 5
++     & "node$exe"  "$
+basedir/node_modules/p
+npm/bin/pnpm.cjs" $arg
+s
++     ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (src\compon   
+ ents\...鈹佲攣鈹佲攣鈹佲攣    
+鈹佲攣鈹佲攣:String) []    ,
+ RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+
+  脳 Static Elements sh
+ould not be interactiv
+e.
+  
+    20 鈹?	return (
+  > 21 鈹?		<div
+       鈹?		^^^^
+  > 22 鈹?			className=
+{cn("w-full relative g
+roup", className)}
+  > 23 鈹?			onMouseEnt
+er={() => setHovered(t
+rue)}
+  > 24 鈹?			onMouseLea
+ve={() => setHovered(f
+alse)}
+  > 25 鈹?		>
+       鈹?		^
+    26 鈹?			{withCopy 
+&& hovered && (
+    27 鈹?				<Button v
+ariant="outline" size=
+"icon" className="abso
+lute top-2 right-2 bg-
+accent" onClick={() =>
+ copyFn(code)}>
+  
+  i To add interactivi
+ty such as a mouse or 
+key event listener to 
+a static element, give
+ the element an approp
+riate role value.
+  
+
+src\components\nav\com
+ponents\nav-item-rende
+r.tsx:24:4 lint/a11y/n
+oStaticElementInteract
+ions 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+
+  脳 Static Elements sh
+ould not be interactiv
+e.
+  
+    22 鈹?		// Vertical
+ nav items with childr
+en are clickable conta
+iners
+    23 鈹?		return (
+  > 24 鈹?			<div class
+Name={className} onCli
+ck={onClick}>
+       鈹?			^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
+    25 鈹?				{children
+}
+    26 鈹?			</div>
+  
+  i To add interactivi
+ty such as a mouse or 
+key event listener to 
+a static element, give
+ the element an approp
+riate role value.
+  
+
+src\components\nav\ver
+tical\nav-group.tsx:32
+:4 lint/a11y/noStaticE
+lementInteractions 鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+  脳 Static Elements sh
+ould not be interactiv
+e.
+  
+    30 鈹?	return (
+    31 鈹?		name && (
+  > 32 鈹?			<div
+       鈹?			^^^^
+  > 33 鈹?				className
+={cn(
+        ...
+  > 37 鈹?				onClick={
+() => onClick(!open)}
+  > 38 鈹?			>
+       鈹?			^
+    39 鈹?				<Icon
+    40 鈹?					icon="ev
+a:arrow-ios-forward-fi
+ll"
+  
+  i To add interactivi
+ty such as a mouse or 
+key event listener to 
+a static element, give
+ the element an approp
+riate role value.
+  
+
+src\layouts\components
+\setting-button.tsx:26
+4:10 lint/a11y/noStati
+cElementInteractions 鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+  脳 Static Elements sh
+ould not be interactiv
+e.
+  
+    262 鈹?							<div 
+className="flex flex-w
+rap gap-1">
+    263 鈹?								{Obj
+ect.entries(presetsCol
+ors).map(([preset, col
+or]) => (
+  > 264 鈹?									<di
+v
+        鈹?									^^^
+^
+  > 265 鈹?										ke
+y={preset}
+         ...
+  > 271 鈹?										on
+Click={() => updateSet
+tings({ themeColorPres
+ets: preset as ThemeCo
+lorPresets })}
+  > 272 鈹?									>
+        鈹?									^
+    273 鈹?										<d
+iv
+    274 鈹?											c
+lassName={cn(
+  
+  i To add interactivi
+ty such as a mouse or 
+key event listener to 
+a static element, give
+ the element an approp
+riate role value.
+  
+
+src\layouts\components
+\setting-button.tsx:35
+0:7 lint/a11y/useAriaP
+ropsSupportedByRole 鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+
+  脳 The ARIA attribute
+ 'aria-label' is not s
+upported by this eleme
+nt.
+  
+    348 鈹?						onClic
+k={toggleFullScreen}
+    349 鈹?					>
+  > 350 鈹?						<div
+        鈹?						^^^^
+  > 351 鈹?							class
+Name="flex items-cente
+r justify-center"
+  > 352 鈹?							aria-
+label={isFullscreen ? 
+t("sys.settings.exitFu
+llscreen") : t("sys.se
+ttings.fullscreen")}
+  > 353 鈹?						>
+        鈹?						^
+    354 鈹?							{isFu
+llscreen ? (
+    355 鈹?								<>
+  
+  i Ensure that ARIA a
+ttributes are valid fo
+r the role of the elem
+ent.
+  
+
+src\pages\components\a
+nimate\views\backgroun
+d\toolbar.tsx:8:3 lint
+/a11y/noStaticElementI
+nteractions 鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣
+
+  脳 Static Elements sh
+ould not be interactiv
+e.
+  
+     6 鈹?export defaul
+t function Toolbar({ o
+nRefresh }: Props) {
+     7 鈹?	return (
+   > 8 鈹?		<div classN
+ame="mb-4 flex items-c
+enter justify-end" onC
+lick={onRefresh}>
+       鈹?		^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
+     9 鈹?			<Icon icon
+="material-symbols:ref
+resh" className="curso
+r-pointer" size={24} /
+>
+    10 鈹?		</div>
+  
+  i To add interactivi
+ty such as a mouse or 
+key event listener to 
+a static element, give
+ the element an approp
+riate role value.
+  
+
+src\pages\components\a
+nimate\views\scroll\to
+olbar.tsx:8:3 lint/a11
+y/noStaticElementInter
+actions 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣
+
+  脳 Static Elements sh
+ould not be interactiv
+e.
+  
+     6 鈹?export defaul
+t function Toolbar({ o
+nRefresh }: Props) {
+     7 鈹?	return (
+   > 8 鈹?		<div classN
+ame="mb-4 flex items-c
+enter justify-end" onC
+lick={onRefresh}>
+       鈹?		^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
+     9 鈹?			<Icon icon
+="material-symbols:ref
+resh" className="curso
+r-pointer" size={24} /
+>
+    10 鈹?		</div>
+  
+  i To add interactivi
+ty such as a mouse or 
+key event listener to 
+a static element, give
+ the element an approp
+riate role value.
+  
+
+src\pages\functions\cl
+ipboard\index.tsx:40:6
+ lint/a11y/noStaticEle
+mentInteractions 鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+  脳 Static Elements sh
+ould not be interactiv
+e.
+  
+    38 鈹?				<div>
+    39 鈹?					<h5 clas
+sName="mb-2 font-mediu
+m">ON DOUBLE CLICK</h5
+>
+  > 40 鈹?					<div onD
+oubleClick={() => copy
+Fn(textOnClick)}>{text
+OnClick}</div>
+       鈹?					^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
+    41 鈹?				</div>
+    42 鈹?			</CardCont
+ent>
+  
+  i To add interactivi
+ty such as a mouse or 
+key event listener to 
+a static element, give
+ the element an approp
+riate role value.
+  
+
+Checked 258 files in 60ms. No fixes applied.
+Found 8 errors.
+check 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹
+佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲
+攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣
+
+  脳 Some errors were e
+mitted while running c
+hecks.
+  
+

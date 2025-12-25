@@ -1,0 +1,404 @@
+src\components\avatar-group\index.tsx format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     1    │ - import·type·{·CSSProperties·}·from·"react";␍
+     2    │ - import·*·as·React·from·"react";␍
+     3    │ - import·{·Avatar,·AvatarFallback·}·from·"@/ui/avatar";␍
+     4    │ - import·{·Tooltip,·TooltipContent,·TooltipTrigger·}·from·"@/ui/tooltip";␍
+     5    │ - ␍
+     6    │ - interface·AvatarGroupProps·{␍
+     7    │ - → children:·React.ReactNode;␍
+     8    │ - → max?:·{␍
+     9    │ - → → count:·number;␍
+    10    │ - → → style?:·CSSProperties;␍
+    11    │ - → };␍
+    12    │ - → size:·number·|·"large"·|·"medium"·|·"small";␍
+    13    │ - }␍
+    14    │ - ␍
+    15    │ - const·getSizeStyles·=·(size:·number·|·"large"·|·"medium"·|·"small"):·CSSProperties·=>·{␍
+    16    │ - → if·(typeof·size·===·"number")·{␍
+    17    │ - → → return·{␍
+    18    │ - → → → width:·size,␍
+    19    │ - → → → height:·size,␍
+    20    │ - → → };␍
+    21    │ - → }␍
+    22    │ - ␍
+    23    │ - → switch·(size)·{␍
+    24    │ - → → case·"small":␍
+    25    │ - → → → return·{·width:·24,·height:·24·};␍
+    26    │ - → → case·"medium":␍
+    27    │ - → → → return·{·width:·32,·height:·32·};␍
+    28    │ - → → case·"large":␍
+    29    │ - → → → return·{·width:·40,·height:·40·};␍
+    30    │ - → → default:␍
+    31    │ - → → → return·{·width:·32,·height:·32·};␍
+    32    │ - → }␍
+    33    │ - };␍
+    34    │ - ␍
+    35    │ - export·function·AvatarGroup({·children,·max,·size·}:·AvatarGroupProps)·{␍
+    36    │ - → const·avatars·=·React.Children.toArray(children);␍
+    37    │ - → const·total·=·avatars.length;␍
+    38    │ - → let·displayAvatars·=·avatars;␍
+    39    │ - → let·extra·=·0;␍
+    40    │ - → let·extraAvatars:·React.ReactNode[]·=·[];␍
+    41    │ - ␍
+    42    │ - → if·(max·&&·total·>·max.count)·{␍
+    43    │ - → → displayAvatars·=·avatars.slice(0,·max.count·-·1);␍
+    44    │ - → → extra·=·total·-·(max.count·-·1);␍
+    45    │ - → → extraAvatars·=·avatars.slice(max.count·-·1);␍
+    46    │ - → }␍
+    47    │ - ␍
+    48    │ - → const·sizeStyles·=·getSizeStyles(size);␍
+    49    │ - → const·extraStyles·=·max?.style·?·{·...sizeStyles,·...max.style·}·:·sizeStyles;␍
+    50    │ - ␍
+    51    │ - → const·cloneAvatarWithSize·=·(child:·React.ReactNode)·=>·{␍
+    52    │ - → → if·(React.isValidElement(child))·{␍
+    53    │ - → → → const·existingStyle·=·(child.props·as·any)?.style·||·{};␍
+    54    │ - → → → return·React.cloneElement(child·as·React.ReactElement<any>,·{␍
+    55    │ - → → → → style:·{·...existingStyle,·...sizeStyles·},␍
+    56    │ - → → → });␍
+    57    │ - → → }␍
+    58    │ - → → return·child;␍
+    59    │ - → };␍
+    60    │ - ␍
+    61    │ - → return·(␍
+    62    │ - → → <div·className="flex·-space-x-3">␍
+    63    │ - → → → {displayAvatars.map((child,·idx)·=>·(␍
+    64    │ - → → → → //·biome-ignore·lint/suspicious/noArrayIndexKey:·Index·used·for·list·key␍
+    65    │ - → → → → <div·key={idx}>{cloneAvatarWithSize(child)}</div>␍
+    66    │ - → → → ))}␍
+    67    │ - → → → {extra·>·0·&&·(␍
+    68    │ - → → → → <Tooltip>␍
+    69    │ - → → → → → <TooltipTrigger·asChild>␍
+    70    │ - → → → → → → <div>␍
+    71    │ - → → → → → → → <Avatar·style={extraStyles}>␍
+    72    │ - → → → → → → → → <AvatarFallback·className="bg-bg-neutral·font-semibold">+{extra}</AvatarFallback>␍
+    73    │ - → → → → → → → </Avatar>␍
+    74    │ - → → → → → → </div>␍
+    75    │ - → → → → → </TooltipTrigger>␍
+    76    │ - → → → → → <TooltipContent>␍
+    77    │ - → → → → → → <div·className="flex·gap-1">␍
+    78    │ - → → → → → → → {extraAvatars.map((child,·idx)·=>·(␍
+    79    │ - → → → → → → → → //·biome-ignore·lint/suspicious/noArrayIndexKey:·Index·used·as·key·for·static·list␍
+    80    │ - → → → → → → → → <div·key={idx}>{cloneAvatarWithSize(child)}</div>␍
+    81    │ - → → → → → → → ))}␍
+    82    │ - → → → → → → </div>␍
+    83    │ - → → → → → </TooltipContent>␍
+    84    │ - → → → → </Tooltip>␍
+    85    │ - → → → )}␍
+    86    │ - → → </div>␍
+    87    │ - → );␍
+    88    │ - }␍
+        1 │ + import·type·{·CSSProperties·}·from·"react";
+        2 │ + import·*·as·React·from·"react";
+        3 │ + import·{·Avatar,·AvatarFallback·}·from·"@/ui/avatar";
+        4 │ + import·{·Tooltip,·TooltipContent,·TooltipTrigger·}·from·"@/ui/tooltip";
+        5 │ + 
+        6 │ + interface·AvatarGroupProps·{
+        7 │ + → children:·React.ReactNode;
+        8 │ + → max?:·{
+        9 │ + → → count:·number;
+       10 │ + → → style?:·CSSProperties;
+       11 │ + → };
+       12 │ + → size:·number·|·"large"·|·"medium"·|·"small";
+       13 │ + }
+       14 │ + 
+       15 │ + const·getSizeStyles·=·(size:·number·|·"large"·|·"medium"·|·"small"):·CSSProperties·=>·{
+       16 │ + → if·(typeof·size·===·"number")·{
+       17 │ + → → return·{
+       18 │ + → → → width:·size,
+       19 │ + → → → height:·size,
+       20 │ + → → };
+       21 │ + → }
+       22 │ + 
+       23 │ + → switch·(size)·{
+       24 │ + → → case·"small":
+       25 │ + → → → return·{·width:·24,·height:·24·};
+       26 │ + → → case·"medium":
+       27 │ + → → → return·{·width:·32,·height:·32·};
+       28 │ + → → case·"large":
+       29 │ + → → → return·{·width:·40,·height:·40·};
+       30 │ + → → default:
+       31 │ + → → → return·{·width:·32,·height:·32·};
+       32 │ + → }
+       33 │ + };
+       34 │ + 
+       35 │ + export·function·AvatarGroup({·children,·max,·size·}:·AvatarGroupProps)·{
+       36 │ + → const·avatars·=·React.Children.toArray(children);
+       37 │ + → const·total·=·avatars.length;
+       38 │ + → let·displayAvatars·=·avatars;
+       39 │ + → let·extra·=·0;
+       40 │ + → let·extraAvatars:·React.ReactNode[]·=·[];
+       41 │ + 
+       42 │ + → if·(max·&&·total·>·max.count)·{
+       43 │ + → → displayAvatars·=·avatars.slice(0,·max.count·-·1);
+       44 │ + → → extra·=·total·-·(max.count·-·1);
+       45 │ + → → extraAvatars·=·avatars.slice(max.count·-·1);
+       46 │ + → }
+       47 │ + 
+       48 │ + → const·sizeStyles·=·getSizeStyles(size);
+       49 │ + → const·extraStyles·=·max?.style·?·{·...sizeStyles,·...max.style·}·:·sizeStyles;
+       50 │ + 
+       51 │ + → const·cloneAvatarWithSize·=·(child:·React.ReactNode)·=>·{
+       52 │ + → → if·(React.isValidElement(child))·{
+       53 │ + → → → const·existingStyle·=·(child.props·as·any)?.style·||·{};
+       54 │ + → → → return·React.cloneElement(child·as·React.ReactElement<any>,·{
+       55 │ + → → → → style:·{·...existingStyle,·...sizeStyles·},
+       56 │ + → → → });
+       57 │ + → → }
+       58 │ + → → return·child;
+       59 │ + → };
+       60 │ + 
+       61 │ + → return·(
+       62 │ + → → <div·className="flex·-space-x-3">
+  27 more lines truncated
+  
+
+src\layouts\dashboard\multi-tabs\providers\multi-tabs-provider.tsx format ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     1    │ - import·{·createContext,·useContext,·useEffect,·useMemo,·useState·}·from·"react";␍
+     2    │ - import·{·useTabOperations·}·from·"../hooks/use-tab-operations";␍
+     3    │ - import·type·{·KeepAliveTab,·MultiTabsContextType·}·from·"../types";␍
+     4    │ - ␍
+     5    │ - const·MultiTabsContext·=·createContext<MultiTabsContextType>({␍
+     6    │ - → tabs:·[],␍
+     7    │ - → activeTabRoutePath:·"",␍
+     8    │ - → setTabs:·()·=>·{},␍
+     9    │ - → closeTab:·()·=>·{},␍
+    10    │ - → closeOthersTab:·()·=>·{},␍
+    11    │ - → closeAll:·()·=>·{},␍
+    12    │ - → closeLeft:·()·=>·{},␍
+    13    │ - → closeRight:·()·=>·{},␍
+    14    │ - → refreshTab:·()·=>·{},␍
+    15    │ - });␍
+    16    │ - ␍
+    17    │ - export·function·MultiTabsProvider({·children·}:·{·children:·React.ReactNode·})·{␍
+    18    │ - → const·[tabs,·setTabs]·=·useState<KeepAliveTab[]>([]);␍
+    19    │ - → const·currentRouteMeta·=·{␍
+    20    │ - → → key:·"/",␍
+    21    │ - → → label:·"Home",␍
+    22    │ - → → hideTab:·false,␍
+    23    │ - → → children:·null,␍
+    24    │ - → → outlet:·null,␍
+    25    │ - → → params:·{},␍
+    26    │ - → };␍
+    27    │ - ␍
+    28    │ - → //·biome-ignore·lint/correctness/useExhaustiveDependencies:·Check·dependencies␍
+    29    │ - → const·activeTabRoutePath·=·useMemo(()·=>·{␍
+    30    │ - → → if·(!currentRouteMeta)·return·"";␍
+    31    │ - → → const·{·key·}·=·currentRouteMeta;␍
+    32    │ - → → return·key;␍
+    33    │ - → },·[currentRouteMeta]);␍
+    34    │ - ␍
+    35    │ - → const·operations·=·useTabOperations(tabs,·setTabs,·activeTabRoutePath);␍
+    36    │ - ␍
+    37    │ - → //·biome-ignore·lint/correctness/useExhaustiveDependencies:·Check·dependencies␍
+    38    │ - → useEffect(()·=>·{␍
+    39    │ - → → if·(!currentRouteMeta)·return;␍
+    40    │ - ␍
+    41    │ - → → setTabs((prev)·=>·{␍
+    42    │ - → → → const·filtered·=·prev.filter((item)·=>·!item.hideTab);␍
+    43    │ - ␍
+    44    │ - → → → const·{·key,·outlet:·children·}·=·currentRouteMeta;␍
+    45    │ - ␍
+    46    │ - → → → const·isExisted·=·filtered.find((item)·=>·item.key·===·key);␍
+    47    │ - → → → if·(!isExisted)·{␍
+    48    │ - → → → → return·[␍
+    49    │ - → → → → → ...filtered,␍
+    50    │ - → → → → → {␍
+    51    │ - → → → → → → ...currentRouteMeta,␍
+    52    │ - → → → → → → key,␍
+    53    │ - → → → → → → children,␍
+    54    │ - → → → → → → timeStamp:·Date.now().toString(),␍
+    55    │ - → → → → → },␍
+    56    │ - → → → → ];␍
+    57    │ - → → → }␍
+    58    │ - ␍
+    59    │ - → → → return·filtered;␍
+    60    │ - → → });␍
+    61    │ - → },·[currentRouteMeta]);␍
+    62    │ - ␍
+    63    │ - → const·contextValue·=·useMemo(␍
+    64    │ - → → ()·=>·({␍
+    65    │ - → → → tabs,␍
+    66    │ - → → → activeTabRoutePath,␍
+    67    │ - → → → setTabs,␍
+    68    │ - → → → ...operations,␍
+    69    │ - → → }),␍
+    70    │ - → → [tabs,·activeTabRoutePath,·operations],␍
+    71    │ - → );␍
+    72    │ - ␍
+    73    │ - → return·<MultiTabsContext.Provider·value={contextValue}>{children}</MultiTabsContext.Provider>;␍
+    74    │ - }␍
+    75    │ - ␍
+    76    │ - export·function·useMultiTabsContext()·{␍
+    77    │ - → return·useContext(MultiTabsContext);␍
+    78    │ - }␍
+        1 │ + import·{·createContext,·useContext,·useEffect,·useMemo,·useState·}·from·"react";
+        2 │ + import·{·useTabOperations·}·from·"../hooks/use-tab-operations";
+        3 │ + import·type·{·KeepAliveTab,·MultiTabsContextType·}·from·"../types";
+        4 │ + 
+        5 │ + const·MultiTabsContext·=·createContext<MultiTabsContextType>({
+        6 │ + → tabs:·[],
+        7 │ + → activeTabRoutePath:·"",
+        8 │ + → setTabs:·()·=>·{},
+        9 │ + → closeTab:·()·=>·{},
+       10 │ + → closeOthersTab:·()·=>·{},
+       11 │ + → closeAll:·()·=>·{},
+       12 │ + → closeLeft:·()·=>·{},
+       13 │ + → closeRight:·()·=>·{},
+       14 │ + → refreshTab:·()·=>·{},
+       15 │ + });
+       16 │ + 
+       17 │ + export·function·MultiTabsProvider({·children·}:·{·children:·React.ReactNode·})·{
+       18 │ + → const·[tabs,·setTabs]·=·useState<KeepAliveTab[]>([]);
+       19 │ + → const·currentRouteMeta·=·{
+       20 │ + → → key:·"/",
+       21 │ + → → label:·"Home",
+       22 │ + → → hideTab:·false,
+       23 │ + → → children:·null,
+       24 │ + → → outlet:·null,
+       25 │ + → → params:·{},
+       26 │ + → };
+       27 │ + 
+       28 │ + → //·biome-ignore·lint/correctness/useExhaustiveDependencies:·Check·dependencies
+       29 │ + → const·activeTabRoutePath·=·useMemo(()·=>·{
+       30 │ + → → if·(!currentRouteMeta)·return·"";
+       31 │ + → → const·{·key·}·=·currentRouteMeta;
+       32 │ + → → return·key;
+       33 │ + → },·[currentRouteMeta]);
+       34 │ + 
+       35 │ + → const·operations·=·useTabOperations(tabs,·setTabs,·activeTabRoutePath);
+       36 │ + 
+       37 │ + → //·biome-ignore·lint/correctness/useExhaustiveDependencies:·Check·dependencies
+       38 │ + → useEffect(()·=>·{
+       39 │ + → → if·(!currentRouteMeta)·return;
+       40 │ + 
+       41 │ + → → setTabs((prev)·=>·{
+       42 │ + → → → const·filtered·=·prev.filter((item)·=>·!item.hideTab);
+       43 │ + 
+       44 │ + → → → const·{·key,·outlet:·children·}·=·currentRouteMeta;
+       45 │ + 
+       46 │ + → → → const·isExisted·=·filtered.find((item)·=>·item.key·===·key);
+       47 │ + → → → if·(!isExisted)·{
+       48 │ + → → → → return·[
+       49 │ + → → → → → ...filtered,
+       50 │ + → → → → → {
+       51 │ + → → → → → → ...currentRouteMeta,
+       52 │ + → → → → → → key,
+       53 │ + → → → → → → children,
+       54 │ + → → → → → → timeStamp:·Date.now().toString(),
+       55 │ + → → → → → },
+       56 │ + → → → → ];
+       57 │ + → → → }
+       58 │ + 
+       59 │ + → → → return·filtered;
+       60 │ + → → });
+       61 │ + → },·[currentRouteMeta]);
+       62 │ + 
+       63 │ + → const·contextValue·=·useMemo(
+       64 │ + → → ()·=>·({
+       65 │ + → → → tabs,
+       66 │ + → → → activeTabRoutePath,
+       67 │ + → → → setTabs,
+       68 │ + → → → ...operations,
+       69 │ + → → }),
+       70 │ + → → [tabs,·activeTabRoutePath,·operations],
+       71 │ + → );
+       72 │ + 
+  7 more lines truncated
+  
+
+src\pages\sys\login\providers\login-provider.tsx format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     1    │ - import·{·createContext,·type·PropsWithChildren,·useContext,·useMemo,·useState·}·from·"react";␍
+     2    │ - ␍
+     3    │ - export·enum·LoginStateEnum·{␍
+     4    │ - → LOGIN·=·0,␍
+     5    │ - → REGISTER·=·1,␍
+     6    │ - → RESET_PASSWORD·=·2,␍
+     7    │ - → MOBILE·=·3,␍
+     8    │ - → QR_CODE·=·4,␍
+     9    │ - }␍
+    10    │ - ␍
+    11    │ - interface·LoginStateContextType·{␍
+    12    │ - → loginState:·LoginStateEnum;␍
+    13    │ - → setLoginState:·(loginState:·LoginStateEnum)·=>·void;␍
+    14    │ - → backToLogin:·()·=>·void;␍
+    15    │ - }␍
+    16    │ - const·LoginStateContext·=·createContext<LoginStateContextType>({␍
+    17    │ - → loginState:·LoginStateEnum.LOGIN,␍
+    18    │ - → setLoginState:·()·=>·{},␍
+    19    │ - → backToLogin:·()·=>·{},␍
+    20    │ - });␍
+    21    │ - ␍
+    22    │ - export·function·useLoginStateContext()·{␍
+    23    │ - → const·context·=·useContext(LoginStateContext);␍
+    24    │ - → return·context;␍
+    25    │ - }␍
+    26    │ - ␍
+    27    │ - export·function·LoginProvider({·children·}:·PropsWithChildren)·{␍
+    28    │ - → const·[loginState,·setLoginState]·=·useState(LoginStateEnum.LOGIN);␍
+    29    │ - ␍
+    30    │ - → function·backToLogin()·{␍
+    31    │ - → → setLoginState(LoginStateEnum.LOGIN);␍
+    32    │ - → }␍
+    33    │ - ␍
+    34    │ - → //·biome-ignore·lint/correctness/useExhaustiveDependencies:·Dependencies·handled·manually␍
+    35    │ - → const·value:·LoginStateContextType·=·useMemo(()·=>·({·loginState,·setLoginState,·backToLogin·}),·[loginState]);␍
+    36    │ - ␍
+    37    │ - → return·<LoginStateContext.Provider·value={value}>{children}</LoginStateContext.Provider>;␍
+    38    │ - }␍
+        1 │ + import·{·createContext,·type·PropsWithChildren,·useContext,·useMemo,·useState·}·from·"react";
+        2 │ + 
+        3 │ + export·enum·LoginStateEnum·{
+        4 │ + → LOGIN·=·0,
+        5 │ + → REGISTER·=·1,
+        6 │ + → RESET_PASSWORD·=·2,
+        7 │ + → MOBILE·=·3,
+        8 │ + → QR_CODE·=·4,
+        9 │ + }
+       10 │ + 
+       11 │ + interface·LoginStateContextType·{
+       12 │ + → loginState:·LoginStateEnum;
+       13 │ + → setLoginState:·(loginState:·LoginStateEnum)·=>·void;
+       14 │ + → backToLogin:·()·=>·void;
+       15 │ + }
+       16 │ + const·LoginStateContext·=·createContext<LoginStateContextType>({
+       17 │ + → loginState:·LoginStateEnum.LOGIN,
+       18 │ + → setLoginState:·()·=>·{},
+       19 │ + → backToLogin:·()·=>·{},
+       20 │ + });
+       21 │ + 
+       22 │ + export·function·useLoginStateContext()·{
+       23 │ + → const·context·=·useContext(LoginStateContext);
+       24 │ + → return·context;
+       25 │ + }
+       26 │ + 
+       27 │ + export·function·LoginProvider({·children·}:·PropsWithChildren)·{
+       28 │ + → const·[loginState,·setLoginState]·=·useState(LoginStateEnum.LOGIN);
+       29 │ + 
+       30 │ + → function·backToLogin()·{
+       31 │ + → → setLoginState(LoginStateEnum.LOGIN);
+       32 │ + → }
+       33 │ + 
+       34 │ + → //·biome-ignore·lint/correctness/useExhaustiveDependencies:·Dependencies·handled·manually
+       35 │ + → const·value:·LoginStateContextType·=·useMemo(()·=>·({·loginState,·setLoginState,·backToLogin·}),·[loginState]);
+       36 │ + 
+       37 │ + → return·<LoginStateContext.Provider·value={value}>{children}</LoginStateContext.Provider>;
+       38 │ + }
+    39 39 │   
+  
+
+Checked 265 files in 71ms. No fixes applied.
+Found 3 errors.
+check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+

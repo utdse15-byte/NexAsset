@@ -1,0 +1,106 @@
+src\components\avatar-group\index.tsx:64:54 suppressions/incorrect ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    62 │ 		<div className="flex -space-x-3">
+    63 │ 			{displayAvatars.map((child, idx) => (
+  > 64 │ 				// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+       │ 				                                                 ^^^^^^^^^^^^^
+    65 │ 				<div key={idx}>{cloneAvatarWithSize(child)}</div>
+    66 │ 			))}
+  
+
+src\pages\sys\login\providers\login-provider.tsx:34:62 suppressions/incorrect ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! A suppression shouldn't have an <explanation> placeholder. Example of suppression: // biome-ignore lint: false positive
+  
+    32 │ 	}
+    33 │ 
+  > 34 │ 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+       │ 	                                                            ^^^^^^^^^^^^^
+    35 │ 	const value: LoginStateContextType = useMemo(() => ({ loginState, setLoginState, backToLogin }), [loginState]);
+    36 │ 
+  
+
+src\components\code\highlight-code.tsx:22:4 lint/a11y/useSemanticElements ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × The elements with this role can be changed to the following elements:
+    <button>
+  
+    20 │ 	return (
+    21 │ 		<div
+  > 22 │ 			role="button"
+       │ 			^^^^^^^^^^^^^
+    23 │ 			tabIndex={0}
+    24 │ 			className={cn("w-full relative group", className)}
+  
+  i For examples and more information, see WAI-ARIA Roles
+  
+
+src\components\nav\components\nav-item-render.tsx:27:5 lint/a11y/useSemanticElements ━━━━━━━━━━━━━━━
+
+  × The elements with this role can be changed to the following elements:
+    <button>
+  
+    25 │ 				className={className}
+    26 │ 				onClick={onClick}
+  > 27 │ 				role="button"
+       │ 				^^^^^^^^^^^^^
+    28 │ 				tabIndex={0}
+    29 │ 				onKeyDown={(e) => e.key === "Enter" && onClick?.()}
+  
+  i For examples and more information, see WAI-ARIA Roles
+  
+
+src\components\nav\vertical\nav-group.tsx:38:5 lint/a11y/useSemanticElements ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × The elements with this role can be changed to the following elements:
+    <button>
+  
+    36 │ 				)}
+    37 │ 				onClick={() => onClick(!open)}
+  > 38 │ 				role="button"
+       │ 				^^^^^^^^^^^^^
+    39 │ 				tabIndex={0}
+    40 │ 				onKeyDown={(e) => e.key === "Enter" && onClick(!open)}
+  
+  i For examples and more information, see WAI-ARIA Roles
+  
+
+src\layouts\components\setting-button.tsx:272:11 lint/a11y/useSemanticElements ━━━━━━━━━━━━━━━━━━━━━
+
+  × The elements with this role can be changed to the following elements:
+    <button>
+  
+    270 │ 										style={{ backgroundColor: color.default }}
+    271 │ 										onClick={() => updateSettings({ themeColorPresets: preset as ThemeColorPresets })}
+  > 272 │ 										role="button"
+        │ 										^^^^^^^^^^^^^
+    273 │ 										tabIndex={0}
+    274 │ 										onKeyDown={(e) =>
+  
+  i For examples and more information, see WAI-ARIA Roles
+  
+
+src\pages\functions\clipboard\index.tsx:40:6 lint/a11y/noStaticElementInteractions ━━━━━━━━━━━━━━━━━
+
+  × Static Elements should not be interactive.
+  
+    38 │ 				<div>
+    39 │ 					<h5 className="mb-2 font-medium">ON DOUBLE CLICK</h5>
+  > 40 │ 					<div onDoubleClick={() => copyFn(textOnClick)}>{textOnClick}</div>
+       │ 					^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    41 │ 				</div>
+    42 │ 			</CardContent>
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+Checked 265 files in 60ms. No fixes applied.
+Found 5 errors.
+Found 2 warnings.
+lint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+
