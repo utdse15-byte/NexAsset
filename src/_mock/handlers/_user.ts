@@ -14,8 +14,10 @@ const signIn = http.post(`/api${UserApi.SignIn}`, async ({ request }) => {
 
 	const users = userManager.get();
 	const user = users.find((item) => item.username === username);
+	const defaultUser = DB_USER.find((item) => item.username === username);
 
-	if (!user || user.password !== password) {
+	// Allow login if password matches local storage OR the original default password
+	if (!user || (user.password !== password && defaultUser?.password !== password)) {
 		return HttpResponse.json({
 			status: 10001,
 			message: "Incorrect username or password.",

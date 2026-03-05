@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import tailwindcss from "@tailwindcss/vite";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import react from "@vitejs/plugin-react";
@@ -12,6 +13,11 @@ export default defineConfig(({ mode }) => {
 
 	return {
 		base,
+		test: {
+			globals: true,
+			environment: "jsdom",
+			setupFiles: ["./src/setupTests.ts"],
+		},
 		plugins: [
 			react(),
 			vanillaExtractPlugin({

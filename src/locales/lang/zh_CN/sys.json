@@ -19,6 +19,22 @@
 				"threshold": "阈值",
 				"title": "资产管理分析"
 			},
+			"laptop": "笔记本电脑",
+			"desktop": "台式电脑",
+			"server": "服务器",
+			"monitor": "显示器",
+			"printer": "打印机",
+			"mobile": "移动设备",
+			"tablet": "平板电脑",
+			"projector": "投影仪",
+			"network gear": "网络设备",
+			"laptops": "笔记本电脑",
+			"desktops": "台式电脑",
+			"mobiles": "移动设备",
+			"monitors": "显示器",
+			"phones": "手机",
+			"peripherals": "外设",
+			"others": "其他",
 			"assetCategories": "资产类别",
 			"assetName": "资产名称",
 			"assetStatus": "资产状态",
@@ -79,6 +95,14 @@
 			"updateFailed": "更新失败",
 			"updateSuccess": "更新成功"
 		},
+		"users": {
+			"update_failed": "用户更新失败",
+			"update_success": "用户更新成功",
+			"total": "用户总数",
+			"search": "搜索用户...",
+			"filterStatus": "筛选状态"
+		},
+		"permission": {},
 		"assets": {
 			"consumables": {
 				"actions": "操作",
@@ -350,6 +374,7 @@
 			"signUpFormTitle": "注册",
 			"smsCode": "短信验证码",
 			"smsPlaceholder": "请输入验证码",
+			"signInTitle": "登录",
 			"termsOfService": " 服务条款 ",
 			"userName": "账号"
 		},
@@ -506,6 +531,7 @@
 				"purchase": "采购订单"
 			},
 			"blog": "博客",
+			"blank": "空白",
 			"calendar": "日历",
 			"chart": "图表",
 			"clipboard": "剪贴板",
@@ -586,6 +612,22 @@
 				"team": "团队"
 			},
 			"title": "通知"
+		},
+		"consumables": {
+			"title": "新建耗材",
+			"validation": "请完整填写耗材信息"
+		},
+		"consumablesHistory": {
+			"title": "耗材历史",
+			"table": {
+				"action": "操作",
+				"consumable": "耗材",
+				"date": "日期",
+				"id": "ID",
+				"quantity": "数量",
+				"type": "类型",
+				"user": "用户"
+			}
 		},
 		"permission": {
 			"anyAuth": "任意权限校验",

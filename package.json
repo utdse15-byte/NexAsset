@@ -8,7 +8,8 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"preinstall": "lefthook install"
+		"preinstall": "lefthook install",
+		"test": "vitest run"
 	},
 	"dependencies": {
 		"@ant-design/cssinjs": "^1.22.0",
@@ -73,6 +74,7 @@
 		"@commitlint/cli": "^17.8.1",
 		"@commitlint/config-conventional": "^17.8.1",
 		"@faker-js/faker": "^8.4.1",
+		"@testing-library/jest-dom": "^6.9.1",
 		"@types/color": "^3.0.6",
 		"@types/numeral": "^2.0.5",
 		"@types/ramda": "^0.29.12",
