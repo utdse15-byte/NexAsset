@@ -37,7 +37,6 @@ export default function PermissionModal({ title, show, formValue, onOk, onCancel
 		defaultValues: formValue,
 	});
 
-	// TODO: fix
 	// const permissions = useUserPermission();
 	const permissions: any[] = [];
 	const [compOptions, setCompOptions] = useState(PAGE_SELECT_OPTIONS);

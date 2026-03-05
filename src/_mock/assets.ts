@@ -218,10 +218,35 @@ export const DB_ROLE: Role[] = [
 ];
 
 export const DB_PERMISSION: Permission[] = [
-	{ id: "permission_create", name: "permission-create", code: "permission:create" },
-	{ id: "permission_read", name: "permission-read", code: "permission:read" },
-	{ id: "permission_update", name: "permission-update", code: "permission:update" },
-	{ id: "permission_delete", name: "permission-delete", code: "permission:delete" },
+	// Asset management
+	{ id: "asset_view", name: "asset-view", code: "asset:view" },
+	{ id: "asset_create", name: "asset-create", code: "asset:create" },
+	{ id: "asset_edit", name: "asset-edit", code: "asset:edit" },
+	{ id: "asset_delete", name: "asset-delete", code: "asset:delete" },
+	{ id: "asset_checkout", name: "asset-checkout", code: "asset:checkout" },
+	{ id: "asset_return", name: "asset-return", code: "asset:return" },
+	// Consumable management
+	{ id: "consumable_view", name: "consumable-view", code: "consumable:view" },
+	{ id: "consumable_edit", name: "consumable-edit", code: "consumable:edit" },
+	{ id: "consumable_stock", name: "consumable-stock", code: "consumable:stock" },
+	// Purchase management
+	{ id: "purchase_view", name: "purchase-view", code: "purchase:view" },
+	{ id: "purchase_create", name: "purchase-create", code: "purchase:create" },
+	{ id: "purchase_approve", name: "purchase-approve", code: "purchase:approve" },
+	{ id: "purchase_reject", name: "purchase-reject", code: "purchase:reject" },
+	// Maintenance
+	{ id: "maintenance_report", name: "maintenance-report", code: "maintenance:report" },
+	{ id: "maintenance_finish", name: "maintenance-finish", code: "maintenance:finish" },
+	// Asset retirement
+	{ id: "asset_retire", name: "asset-retire", code: "asset:retire" },
+	// Reports
+	{ id: "report_view", name: "report-view", code: "report:view" },
+	{ id: "report_export", name: "report-export", code: "report:export" },
+	// User management
+	{ id: "user_view", name: "user-view", code: "user:view" },
+	{ id: "user_create", name: "user-create", code: "user:create" },
+	{ id: "user_edit", name: "user-edit", code: "user:edit" },
+	{ id: "user_delete", name: "user-delete", code: "user:delete" },
 ];
 
 export const DB_USER_ROLE = [
@@ -229,15 +254,23 @@ export const DB_USER_ROLE = [
 	{ id: "user_test_role_test", userId: "user_test_id", roleId: "role_test_id" },
 ];
 
-export const DB_ROLE_PERMISSION = [
-	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_create" },
-	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_read" },
-	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_update" },
-	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_delete" },
+// Admin gets ALL permissions
+const adminPermissions = DB_PERMISSION.map((p) => ({
+	id: faker.string.uuid(),
+	roleId: "role_admin_id",
+	permissionId: p.id,
+}));
 
-	{ id: faker.string.uuid(), roleId: "role_test_id", permissionId: "permission_read" },
-	{ id: faker.string.uuid(), roleId: "role_test_id", permissionId: "permission_update" },
-];
+// Test user gets read-only permissions
+const testPermissions = ["asset_view", "consumable_view", "purchase_view", "report_view", "user_view"].map(
+	(permissionId) => ({
+		id: faker.string.uuid(),
+		roleId: "role_test_id",
+		permissionId,
+	}),
+);
+
+export const DB_ROLE_PERMISSION = [...adminPermissions, ...testPermissions];
 
 export const DB_CONSUMABLES: Consumable[] = [
 	{

@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import assetService from "@/api/services/assetService";
+import { AuthGuard } from "@/components/auth/auth-guard";
 import { Icon } from "@/components/icon";
 import type { PurchaseRequest, PurchaseStatus } from "@/types/entity";
 import { Title } from "@/ui/typography";
@@ -123,7 +124,7 @@ export default function PurchasePage() {
 			render: (_, record) => (
 				<Space>
 					{record.status === "pending" && (
-						<>
+						<AuthGuard check="purchase:approve">
 							<Button
 								size="small"
 								type="primary"
@@ -139,7 +140,7 @@ export default function PurchasePage() {
 							>
 								{t("sys.assets.purchase.reject")}
 							</Button>
-						</>
+						</AuthGuard>
 					)}
 					{record.status === "approved" && (
 						<Button
@@ -170,9 +171,11 @@ export default function PurchasePage() {
 				<Title as="h2" className="text-3xl font-bold tracking-tight">
 					{t("sys.assets.purchase.title")}
 				</Title>
-				<Button type="primary" icon={<Icon icon="solar:add-circle-bold" />} onClick={() => setIsModalOpen(true)}>
-					{t("sys.assets.purchase.createRequest")}
-				</Button>
+				<AuthGuard check="purchase:create">
+					<Button type="primary" icon={<Icon icon="solar:add-circle-bold" />} onClick={() => setIsModalOpen(true)}>
+						{t("sys.assets.purchase.createRequest")}
+					</Button>
+				</AuthGuard>
 			</div>
 
 			<Row gutter={16}>

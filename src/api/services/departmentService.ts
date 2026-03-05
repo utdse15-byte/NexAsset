@@ -6,8 +6,9 @@ export enum DepartmentApi {
 }
 
 const getDepartmentList = () => apiClient.get<Department[]>({ url: DepartmentApi.Department });
-const createDepartment = (data: any) => apiClient.post({ url: DepartmentApi.Department, data });
-const updateDepartment = (data: any) => apiClient.put({ url: `${DepartmentApi.Department}/${data.id}`, data });
+const createDepartment = (data: Partial<Department>) => apiClient.post({ url: DepartmentApi.Department, data });
+const updateDepartment = (data: Partial<Department> & { id: string }) =>
+	apiClient.put({ url: `${DepartmentApi.Department}/${data.id}`, data });
 const deleteDepartment = (id: string) => apiClient.delete({ url: `${DepartmentApi.Department}/${id}` });
 
 export default {

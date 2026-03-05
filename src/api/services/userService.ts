@@ -25,8 +25,8 @@ const logout = () => apiClient.get({ url: UserApi.Logout });
 const findById = (id: string) => apiClient.get<UserInfo[]>({ url: `${UserApi.User}/${id}` });
 
 const getUserList = () => apiClient.get<User[]>({ url: UserApi.User });
-const createUser = (data: any) => apiClient.post({ url: UserApi.User, data });
-const updateUser = (data: any) => apiClient.put({ url: `${UserApi.User}/${data.id}`, data });
+const createUser = (data: Partial<User>) => apiClient.post({ url: UserApi.User, data });
+const updateUser = (data: Partial<User> & { id: string }) => apiClient.put({ url: `${UserApi.User}/${data.id}`, data });
 const deleteUser = (id: string) => apiClient.delete({ url: `${UserApi.User}/${id}` });
 
 export default {

@@ -12,11 +12,11 @@ import { Text } from "@/ui/typography";
 
 const Component_Auth_1 = `
 <AuthGuard
-  check="permission:delete"
+  check="asset:delete"
   baseOn="permission"
   fallback={
     <Text variant="body1" color="error">
-      没有<Text variant="code">permission:delete</Text>权限
+      没有<Text variant="code">asset:delete</Text>权限
     </Text>
   }
 >
@@ -28,11 +28,11 @@ const Component_Auth_1 = `
 
 const Component_Auth_2 = `
 <AuthGuard
-  checkAny={["permission:update", "permission:delete"]}
+  checkAny={["asset:edit", "asset:delete"]}
   baseOn="permission"
   fallback={
     <Text variant="body1" color="error">
-      没有<Text variant="code">permission:update</Text>或<Text variant="code">permission:delete</Text>权限
+      没有<Text variant="code">asset:edit</Text>或<Text variant="code">asset:delete</Text>权限
     </Text>
   }
 >
@@ -42,11 +42,11 @@ const Component_Auth_2 = `
 
 const Component_Auth_3 = `
 <AuthGuard
-  checkAll={["permission:read", "permission:create"]}
+  checkAll={["asset:view", "asset:create"]}
   baseOn="permission"
   fallback={
     <Text variant="body1" color="error">
-      没有<Text variant="code">permission:read</Text>和<Text variant="code">permission:create</Text>权限
+      没有<Text variant="code">asset:view</Text>和<Text variant="code">asset:create</Text>权限
     </Text>
   }
 >
@@ -56,18 +56,18 @@ const Component_Auth_3 = `
 
 const Function_Auth_1 = `
 const { check, checkAny, checkAll } = useAuthCheck();
-check("permission:delete") ? (
+check("asset:delete") ? (
   <Button variant="destructive">Delete</Button>
 ) : (
   <Text variant="body1" color="error">
-    没有<Text variant="code">permission:delete</Text>权限
+    没有<Text variant="code">asset:delete</Text>权限
   </Text>
 );
 `;
 
 const Function_Auth_2 = `
 const { check, checkAny, checkAll } = useAuthCheck();
-checkAny(["permission:update", "permission:delete"]) ? (
+checkAny(["asset:edit", "asset:delete"]) ? (
   <Button variant="secondary">Detail</Button>
 ) : (
   <Text variant="body1" color="error">
@@ -75,7 +75,7 @@ checkAny(["permission:update", "permission:delete"]) ? (
 
 const Function_Auth_3 = `
 const { check, checkAny, checkAll } = useAuthCheck();
-checkAll(["permission:read", "permission:create"]) ? (
+checkAll(["asset:view", "asset:create"]) ? (
   <Button variant="secondary">Add</Button>
 ) : (
   <Text variant="body1" color="error">
@@ -153,14 +153,14 @@ export default function PermissionPage() {
 								lang: "tsx",
 							}}
 							title="单权限校验"
-							description="当用户拥有permission:delete权限时，显示Delete按钮，否则fallback"
+							description="当用户拥有asset:delete权限时，显示Delete按钮，否则fallback"
 						>
 							<AuthGuard
-								check="permission:delete"
+								check="asset:delete"
 								baseOn="permission"
 								fallback={
 									<Text variant="body1" color="error">
-										{t("sys.permission.noPermission", { permission: "permission:delete" })}
+										{t("sys.permission.noPermission", { permission: "asset:delete" })}
 									</Text>
 								}
 							>
@@ -177,13 +177,13 @@ export default function PermissionPage() {
 							}}
 						>
 							<AuthGuard
-								checkAny={["permission:update", "permission:delete"]}
+								checkAny={["asset:edit", "asset:delete"]}
 								baseOn="permission"
 								fallback={
 									<Text variant="body1" color="error">
 										{t("sys.permission.noAnyPermission", {
-											permission1: "permission:update",
-											permission2: "permission:delete",
+											permission1: "asset:edit",
+											permission2: "asset:delete",
 										})}
 									</Text>
 								}
@@ -198,16 +198,16 @@ export default function PermissionPage() {
 								lang: "tsx",
 							}}
 							title="多权限校验"
-							description="当用户拥有permission:read和permission:create权限时，显示Add按钮，否则fallback"
+							description="当用户拥有asset:view和asset:create权限时，显示Add按钮，否则fallback"
 						>
 							<AuthGuard
-								checkAll={["permission:read", "permission:create"]}
+								checkAll={["asset:view", "asset:create"]}
 								baseOn="permission"
 								fallback={
 									<Text variant="body1" color="error">
 										{t("sys.permission.noMultiPermission", {
-											permission1: "permission:read",
-											permission2: "permission:create",
+											permission1: "asset:view",
+											permission2: "asset:create",
 										})}
 									</Text>
 								}
@@ -231,13 +231,13 @@ export default function PermissionPage() {
 								lang: "tsx",
 							}}
 							title="单权限校验"
-							description="当用户拥有permission:delete权限时，显示Delete按钮，否则fallback"
+							description="当用户拥有asset:delete权限时，显示Delete按钮，否则fallback"
 						>
-							{check("permission:delete") ? (
+							{check("asset:delete") ? (
 								<Button variant="destructive">Delete</Button>
 							) : (
 								<Text variant="body1" color="error">
-									{t("sys.permission.noPermission", { permission: "permission:delete" })}
+									{t("sys.permission.noPermission", { permission: "asset:delete" })}
 								</Text>
 							)}
 						</CodeBlock>
@@ -250,13 +250,13 @@ export default function PermissionPage() {
 								lang: "tsx",
 							}}
 						>
-							{checkAny(["permission:update", "permission:delete"]) ? (
+							{checkAny(["asset:edit", "asset:delete"]) ? (
 								<Button variant="secondary">Detail</Button>
 							) : (
 								<Text variant="body1" color="error">
 									{t("sys.permission.noAnyPermission", {
-										permission1: "permission:update",
-										permission2: "permission:delete",
+										permission1: "asset:edit",
+										permission2: "asset:delete",
 									})}
 								</Text>
 							)}
@@ -268,15 +268,15 @@ export default function PermissionPage() {
 								lang: "tsx",
 							}}
 							title="多权限校验"
-							description="当用户拥有permission:read和permission:create权限时，显示Add按钮，否则fallback"
+							description="当用户拥有asset:view和asset:create权限时，显示Add按钮，否则fallback"
 						>
-							{checkAll(["permission:read", "permission:create"]) ? (
+							{checkAll(["asset:view", "asset:create"]) ? (
 								<Button variant="secondary">Add</Button>
 							) : (
 								<Text variant="body1" color="error">
 									{t("sys.permission.noMultiPermission", {
-										permission1: "permission:read",
-										permission2: "permission:create",
+										permission1: "asset:view",
+										permission2: "asset:create",
 									})}
 								</Text>
 							)}

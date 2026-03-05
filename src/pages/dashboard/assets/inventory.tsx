@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
 import assetService from "@/api/services/assetService";
+import { AuthGuard } from "@/components/auth/auth-guard";
 import { Icon } from "@/components/icon";
 import { useCartActions, useCartItems } from "@/store/cartStore";
 import { type Asset, AssetStatus } from "@/types/entity";
@@ -156,75 +157,85 @@ export default function AssetInventoryPage() {
 				return (
 					<div className="flex items-center gap-2">
 						{record.status === AssetStatus.InUse && (
-							<Button
-								type="primary"
-								size="small"
-								ghost
-								onClick={() => returnMutation.mutate(record.id)}
-								loading={returnMutation.isPending && returnMutation.variables === record.id}
-								icon={<Icon icon="solar:inbox-in-bold-duotone" />}
-							>
-								{t("sys.assets.inventory.checkin")}
-							</Button>
+							<AuthGuard check="asset:return">
+								<Button
+									type="primary"
+									size="small"
+									ghost
+									onClick={() => returnMutation.mutate(record.id)}
+									loading={returnMutation.isPending && returnMutation.variables === record.id}
+									icon={<Icon icon="solar:inbox-in-bold-duotone" />}
+								>
+									{t("sys.assets.inventory.checkin")}
+								</Button>
+							</AuthGuard>
 						)}
 
 						{record.status === AssetStatus.InStock && (
-							<Button
-								type={cartItems.some((item) => item.id === record.id) ? "default" : "primary"}
-								size="small"
-								disabled={cartItems.some((item) => item.id === record.id)}
-								onClick={() => addItem(record)}
-								icon={<Icon icon="solar:cart-plus-bold-duotone" />}
-							>
-								{cartItems.some((item) => item.id === record.id)
-									? t("sys.assets.inventory.added")
-									: t("sys.assets.inventory.addToCart")}
-							</Button>
+							<AuthGuard check="asset:checkout">
+								<Button
+									type={cartItems.some((item) => item.id === record.id) ? "default" : "primary"}
+									size="small"
+									disabled={cartItems.some((item) => item.id === record.id)}
+									onClick={() => addItem(record)}
+									icon={<Icon icon="solar:cart-plus-bold-duotone" />}
+								>
+									{cartItems.some((item) => item.id === record.id)
+										? t("sys.assets.inventory.added")
+										: t("sys.assets.inventory.addToCart")}
+								</Button>
+							</AuthGuard>
 						)}
 
 						{record.status === AssetStatus.Maintenance && (
-							<Button
-								size="small"
-								className="bg-green-500 hover:bg-green-600 text-white border-none"
-								onClick={() => finishMaintenanceMutation.mutate(record.id)}
-								loading={finishMaintenanceMutation.isPending && finishMaintenanceMutation.variables === record.id}
-								icon={<Icon icon="solar:check-circle-bold-duotone" />}
-							>
-								{t("sys.assets.inventory.finishMaintenance")}
-							</Button>
+							<AuthGuard check="maintenance:finish">
+								<Button
+									size="small"
+									className="bg-green-500 hover:bg-green-600 text-white border-none"
+									onClick={() => finishMaintenanceMutation.mutate(record.id)}
+									loading={finishMaintenanceMutation.isPending && finishMaintenanceMutation.variables === record.id}
+									icon={<Icon icon="solar:check-circle-bold-duotone" />}
+								>
+									{t("sys.assets.inventory.finishMaintenance")}
+								</Button>
+							</AuthGuard>
 						)}
 
 						{(record.status === AssetStatus.InStock || record.status === AssetStatus.InUse) && (
-							<Button
-								size="small"
-								className="bg-orange-500 hover:bg-orange-600 text-white border-none"
-								onClick={() => reportMaintenanceMutation.mutate(record.id)}
-								loading={reportMaintenanceMutation.isPending && reportMaintenanceMutation.variables === record.id}
-								icon={<Icon icon="solar:wrench-bold-duotone" />}
-							>
-								{t("sys.assets.inventory.maintenance")}
-							</Button>
+							<AuthGuard check="maintenance:report">
+								<Button
+									size="small"
+									className="bg-orange-500 hover:bg-orange-600 text-white border-none"
+									onClick={() => reportMaintenanceMutation.mutate(record.id)}
+									loading={reportMaintenanceMutation.isPending && reportMaintenanceMutation.variables === record.id}
+									icon={<Icon icon="solar:wrench-bold-duotone" />}
+								>
+									{t("sys.assets.inventory.maintenance")}
+								</Button>
+							</AuthGuard>
 						)}
 
 						{(record.status === AssetStatus.InStock || record.status === AssetStatus.Maintenance) && (
-							<Popconfirm
-								title={t("sys.assets.inventory.retireConfirmTitle") || "Retire Asset"}
-								description={
-									t("sys.assets.inventory.retireConfirmDesc") || "Are you sure you want to retire this asset?"
-								}
-								onConfirm={() => retireMutation.mutate(record.id)}
-								okText={t("sys.common.yes") || "Yes"}
-								cancelText={t("sys.common.no") || "No"}
-							>
-								<Button
-									size="small"
-									danger
-									loading={retireMutation.isPending && retireMutation.variables === record.id}
-									icon={<Icon icon="solar:trash-bin-trash-bold-duotone" />}
+							<AuthGuard check="asset:retire">
+								<Popconfirm
+									title={t("sys.assets.inventory.retireConfirmTitle") || "Retire Asset"}
+									description={
+										t("sys.assets.inventory.retireConfirmDesc") || "Are you sure you want to retire this asset?"
+									}
+									onConfirm={() => retireMutation.mutate(record.id)}
+									okText={t("sys.common.yes") || "Yes"}
+									cancelText={t("sys.common.no") || "No"}
 								>
-									{t("sys.assets.inventory.retire")}
-								</Button>
-							</Popconfirm>
+									<Button
+										size="small"
+										danger
+										loading={retireMutation.isPending && retireMutation.variables === record.id}
+										icon={<Icon icon="solar:trash-bin-trash-bold-duotone" />}
+									>
+										{t("sys.assets.inventory.retire")}
+									</Button>
+								</Popconfirm>
+							</AuthGuard>
 						)}
 					</div>
 				);

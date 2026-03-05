@@ -20,7 +20,16 @@ if (import.meta.env.DEV) {
 	});
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			staleTime: 30_000, // 30s: data is considered fresh, no duplicate requests on page switch
+			gcTime: 5 * 60_000, // 5min: unused cache is garbage collected
+			refetchOnWindowFocus: false, // don't refetch on window focus
+			retry: 1, // retry once on failure
+		},
+	},
+});
 
 function App({ children }: { children: React.ReactNode }) {
 	return (

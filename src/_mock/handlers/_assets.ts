@@ -127,7 +127,6 @@ const checkoutAssets = http.post("/api/assets/checkout", async ({ request }) => 
 });
 
 const assetStatistics = http.get("/api/assets/statistics", async () => {
-	console.log("Asset Statistics handler HIT!");
 	try {
 		const assets = assetManager.get() || [];
 

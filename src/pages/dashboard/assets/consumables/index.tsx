@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import assetService from "@/api/services/assetService";
+import { AuthGuard } from "@/components/auth/auth-guard";
 import { Icon } from "@/components/icon";
 import type { Consumable } from "@/types/entity";
 import { Title } from "@/ui/typography";
@@ -102,20 +103,26 @@ export default function ConsumablesPage() {
 			title: t("sys.assets.consumables.actions"),
 			key: "actions",
 			render: (_, record) => (
-				<Space>
-					<Button size="small" icon={<Icon icon="solar:add-circle-bold" />} onClick={() => handleAction(record, "in")}>
-						{t("sys.assets.consumables.restock")}
-					</Button>
-					<Button
-						size="small"
-						danger
-						disabled={record.quantity === 0}
-						icon={<Icon icon="solar:minus-circle-bold" />}
-						onClick={() => handleAction(record, "out")}
-					>
-						{t("sys.assets.consumables.consume")}
-					</Button>
-				</Space>
+				<AuthGuard check="consumable:stock">
+					<Space>
+						<Button
+							size="small"
+							icon={<Icon icon="solar:add-circle-bold" />}
+							onClick={() => handleAction(record, "in")}
+						>
+							{t("sys.assets.consumables.restock")}
+						</Button>
+						<Button
+							size="small"
+							danger
+							disabled={record.quantity === 0}
+							icon={<Icon icon="solar:minus-circle-bold" />}
+							onClick={() => handleAction(record, "out")}
+						>
+							{t("sys.assets.consumables.consume")}
+						</Button>
+					</Space>
+				</AuthGuard>
 			),
 		},
 	];

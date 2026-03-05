@@ -96,7 +96,7 @@ const baseCharOptions = (themeMode: ThemeMode, themeColorPresets: ThemeColorPres
 		// Grid
 		grid: {
 			strokeDashArray: 3,
-			borderColor: themeVars.colors.background.neutral, // TODO: change to gray[500]
+			borderColor: themeVars.colors.palette.gray[500],
 			padding: { top: 0, right: 0, bottom: 0 },
 			xaxis: { lines: { show: false } },
 		},

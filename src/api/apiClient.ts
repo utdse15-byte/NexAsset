@@ -14,7 +14,10 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
 	(config) => {
-		config.headers.Authorization = "Bearer Token";
+		const { accessToken } = userStore.getState().userToken;
+		if (accessToken) {
+			config.headers.Authorization = `Bearer ${accessToken}`;
+		}
 		return config;
 	},
 	(error) => Promise.reject(error),

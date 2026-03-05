@@ -189,7 +189,7 @@ export const frontendNavData: NavProps["data"] = [
 				title: "sys.nav.permission.page_test",
 				path: "/permission/page-test",
 				icon: <Icon icon="mingcute:safe-lock-fill" size="24" />,
-				auth: ["permission:read"],
+				auth: ["asset:view"],
 				hidden: true,
 			},
 			{
