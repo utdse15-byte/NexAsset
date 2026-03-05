@@ -27,5 +27,10 @@ dist-ssr
 # vite build stats
 stats.html
 
-# build logs
+# build & debug logs
 *_output.txt
+*_errors*.txt
+check_*.txt
+lint_*.txt
+build_*.txt
+admin_inventory.png

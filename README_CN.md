@@ -44,7 +44,7 @@
 
 环境要求：
 - Node.js >= 20.0.0
-- pnpm >= 8.0.0
+- pnpm >= 10.0.0
 
 ```bash
 # 安装依赖
@@ -72,7 +72,7 @@ src/
 ├── layouts/      # 布局组件
 ├── locales/      # 国际化
 ├── pages/        # 页面
-├── router/       # 路由配置
+├── routes/       # 路由配置
 ├── store/        # 状态管理
 ├── theme/        # 主题配置
 ├── types/        # 类型定义
