@@ -1,8 +1,19 @@
-# NexAsset
+<div align="center">
+  <h1>NexAsset 🚀</h1>
+  <p>企业级 IT 资产管理系统</p>
+  
+  <p>
+    <a href="https://nex-asset.vercel.app"><b>在线演示 (Live Demo)</b></a> •
+    <a href="README.md">English Documentation</a>
+  </p>
 
-企业级 IT 资产管理系统，用于追踪和管理硬件、软件资产的全生命周期。
-
-![React](https://img.shields.io/badge/React-19-blue) ![Vite](https://img.shields.io/badge/Vite-6-brightgreen) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![License](https://img.shields.io/badge/License-MIT-yellow)
+  <p>
+    <img src="https://img.shields.io/badge/React-19-blue" alt="React">
+    <img src="https://img.shields.io/badge/Vite-6-brightgreen" alt="Vite">
+    <img src="https://img.shields.io/badge/TypeScript-5-blue" alt="TypeScript">
+    <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License">
+  </p>
+</div>
 
 ## 功能
 
@@ -23,6 +34,12 @@
 - 审计日志
 - 中英文切换
 - 深色模式
+
+### 核心工程实践
+- **React Query 状态查询引擎**: 重构传统挂载请求，提供无缝的数据缓存、后台验证刷新。
+- **Vitest 单元测试覆盖**: 针对自定义 Hook 和业务组件的边界测试与断言。
+- **GitHub Actions CI/CD**: 包括依赖安装、代码及类型检查 (Biome/Tsc) 和测试运行的完整自动化。
+- **MSW 深度集成**: 高鲁棒性的前端本地持久化体验模拟。
 
 ## 技术栈
 
