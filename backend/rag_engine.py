@@ -42,7 +42,7 @@ HISTORY_TURNS_FOR_QA = 10           # QA prompt 注入最近 N 条
 HISTORY_TURNS_FOR_CONDENSE = 10     # condense 用最近 N 条
 MAX_HISTORY_LENGTH = int(os.getenv("MAX_HISTORY_LENGTH", "20"))
 MAX_SESSIONS = int(os.getenv("MAX_SESSIONS", "100"))
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "models/text-embedding-004")
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "gemini-embedding-2")
 CHAT_MODEL = os.getenv("CHAT_MODEL", "gemini-3.1-flash-lite")
 
 # 出现以下指代/省略关键词时才触发 condense, 节省一次 LLM 调用

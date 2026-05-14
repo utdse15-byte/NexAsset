@@ -115,7 +115,7 @@
 | 框架      | FastAPI (异步, SSE)                     |
 | LLM 管道  | LangChain LCEL                          |
 | 向量库    | ChromaDB (持久化)                       |
-| Embedding | Google `text-embedding-004`             |
+| Embedding | Google `gemini-embedding-2`             |
 | Chat 模型 | Google `gemini-3.1-flash-lite` (可配置) |
 | 测试/检查 | Ruff + Pytest + httpx ASGI client       |
 | 容器化    | 多阶段 Dockerfile，非 root 用户运行     |

@@ -37,18 +37,18 @@ pytest -q
 
 见 `.env.example`。关键项：
 
-| 变量                        | 默认                        | 说明                                |
-| --------------------------- | --------------------------- | ----------------------------------- |
-| `GEMINI_API_KEY`            | –                           | **必填** (也接受 `GOOGLE_API_KEY`)  |
-| `CHAT_MODEL`                | `gemini-3.1-flash-lite`     |                                     |
-| `EMBEDDING_MODEL`           | `models/text-embedding-004` |                                     |
-| `ALLOWED_ORIGINS`           | 空                          | 跨域来源 (逗号分隔)。留空走同源反代 |
-| `RATE_LIMIT_WINDOW_SECONDS` | 60                          | 限流时间窗                          |
-| `RATE_LIMIT_MAX_REQUESTS`   | 30                          | 窗口内最大请求数 (按 IP)            |
-| `ADMIN_TOKEN`               | 空                          | 设置后才能调 `POST /api/ai/reindex` |
-| `MAX_HISTORY_LENGTH`        | 20                          | 单会话最多保留消息数                |
-| `MAX_SESSIONS`              | 100                         | 总会话数上限 (LRU)                  |
-| `LOG_LEVEL`                 | `INFO`                      |                                     |
+| 变量                        | 默认                    | 说明                                |
+| --------------------------- | ----------------------- | ----------------------------------- |
+| `GEMINI_API_KEY`            | –                       | **必填** (也接受 `GOOGLE_API_KEY`)  |
+| `CHAT_MODEL`                | `gemini-3.1-flash-lite` |                                     |
+| `EMBEDDING_MODEL`           | `gemini-embedding-2`    |                                     |
+| `ALLOWED_ORIGINS`           | 空                      | 跨域来源 (逗号分隔)。留空走同源反代 |
+| `RATE_LIMIT_WINDOW_SECONDS` | 60                      | 限流时间窗                          |
+| `RATE_LIMIT_MAX_REQUESTS`   | 30                      | 窗口内最大请求数 (按 IP)            |
+| `ADMIN_TOKEN`               | 空                      | 设置后才能调 `POST /api/ai/reindex` |
+| `MAX_HISTORY_LENGTH`        | 20                      | 单会话最多保留消息数                |
+| `MAX_SESSIONS`              | 100                     | 总会话数上限 (LRU)                  |
+| `LOG_LEVEL`                 | `INFO`                  |                                     |
 
 ## API
 

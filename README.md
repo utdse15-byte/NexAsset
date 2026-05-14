@@ -105,7 +105,7 @@ The bits I think are worth a closer look during code review:
 | Framework      | **FastAPI** (async, SSE)                          |
 | LLM Pipeline   | **LangChain LCEL**                                |
 | Vector Store   | **ChromaDB** (persistent)                         |
-| Embeddings     | **Google** `text-embedding-004`                   |
+| Embeddings     | **Google** `gemini-embedding-2`                   |
 | Chat Model     | **Google** `gemini-3.1-flash-lite` (configurable) |
 | Linter / Tests | **Ruff + Pytest + httpx ASGI client**             |
 | Container      | **Multi-stage Dockerfile, non-root**              |
