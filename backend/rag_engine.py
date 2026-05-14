@@ -4,7 +4,7 @@ RAG Engine - LangChain + ChromaDB 检索增强生成引擎
 使用 LangChain LCEL (Expression Language) 构建 RAG 管道:
 1. 加载 docs/ 下的知识文档 + 计算指纹
 2. RecursiveCharacterTextSplitter 切分
-3. OpenAI Embeddings 向量化
+3. Google Gemini Embeddings 向量化
 4. 存入 ChromaDB (持久化)
 5. MMR 检索 + LCEL 生成
 """
@@ -22,7 +22,7 @@ from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 logger = logging.getLogger("nexasset.ai.rag")
@@ -42,8 +42,8 @@ HISTORY_TURNS_FOR_QA = 10           # QA prompt 注入最近 N 条
 HISTORY_TURNS_FOR_CONDENSE = 10     # condense 用最近 N 条
 MAX_HISTORY_LENGTH = int(os.getenv("MAX_HISTORY_LENGTH", "20"))
 MAX_SESSIONS = int(os.getenv("MAX_SESSIONS", "100"))
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
-CHAT_MODEL = os.getenv("CHAT_MODEL", "gpt-4o-mini")
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "models/text-embedding-004")
+CHAT_MODEL = os.getenv("CHAT_MODEL", "gemini-3.1-flash-lite")
 
 # 出现以下指代/省略关键词时才触发 condense, 节省一次 LLM 调用
 _NEEDS_CONDENSE_HINTS: tuple[str, ...] = (
@@ -105,18 +105,24 @@ class RAGEngine:
     def __init__(self):
         self._vectorstore: Chroma | None = None
         self._retriever = None
-        self._llm: ChatOpenAI | None = None
-        self._condense_llm: ChatOpenAI | None = None
+        self._llm: ChatGoogleGenerativeAI | None = None
+        self._condense_llm: ChatGoogleGenerativeAI | None = None
         # OrderedDict 实现真正的 LRU
         self._sessions: OrderedDict[str, list] = OrderedDict()
 
     # ── 文档指纹 ────────────────────────────────
     @staticmethod
     def _compute_docs_hash() -> str:
-        """对 docs/ 下所有 .md 计算稳定 hash, 用于检测内容变更。"""
-        if not DOCS_DIR.exists():
-            return ""
+        """对 docs/ 下所有 .md 计算稳定 hash, 用于检测内容变更。
+
+        指纹同时包含 EMBEDDING_MODEL: 切换 embedding 模型后向量维度可能变化,
+        必须强制重建, 否则 Chroma 会因维度不匹配而报错。
+        """
         h = hashlib.sha256()
+        # 先把 embedding model 名混进去 (空 docs 目录也能产出非空指纹)
+        h.update(f"embedding_model={EMBEDDING_MODEL}\0".encode())
+        if not DOCS_DIR.exists():
+            return h.hexdigest()
         for p in sorted(DOCS_DIR.rglob("*.md")):
             h.update(p.relative_to(DOCS_DIR).as_posix().encode("utf-8"))
             h.update(b"\0")
@@ -141,7 +147,7 @@ class RAGEngine:
     # ── 初始化 ──────────────────────────────────
     def initialize(self) -> None:
         """加载或构建向量库, 然后初始化 LLM。"""
-        embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL)
+        embeddings = GoogleGenerativeAIEmbeddings(model=EMBEDDING_MODEL)
 
         current_hash = self._compute_docs_hash()
         stored_hash = self._read_stored_hash()
@@ -171,11 +177,10 @@ class RAGEngine:
             },
         )
 
-        self._llm = ChatOpenAI(model=CHAT_MODEL, temperature=0.3, streaming=True)
-        # condense 用确定性、不流式
-        self._condense_llm = ChatOpenAI(
-            model=CHAT_MODEL, temperature=0, streaming=False
-        )
+        # 主对话 LLM: 流式, 略带创造性
+        self._llm = ChatGoogleGenerativeAI(model=CHAT_MODEL, temperature=0.3)
+        # condense 用确定性, 不流式
+        self._condense_llm = ChatGoogleGenerativeAI(model=CHAT_MODEL, temperature=0)
 
         logger.info("RAG 引擎初始化完成 (chroma=%s)", CHROMA_PERSIST_DIR)
 
@@ -207,7 +212,7 @@ class RAGEngine:
 
     def rebuild_index(self) -> None:
         """强制重建向量索引 (供管理员端点调用)。"""
-        embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL)
+        embeddings = GoogleGenerativeAIEmbeddings(model=EMBEDDING_MODEL)
         if CHROMA_PERSIST_DIR.exists():
             shutil.rmtree(CHROMA_PERSIST_DIR, ignore_errors=True)
         self._vectorstore = self._build_vectorstore(embeddings)

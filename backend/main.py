@@ -152,7 +152,7 @@ async def chat(request: ChatRequest, http_request: Request):
             async for token in rag_engine.query_stream(
                 request.message, session_id=request.session_id
             ):
-                # 客户端断开后立刻停止生成, 避免空烧 OpenAI token
+                # 客户端断开后立刻停止生成, 避免空烧 LLM token
                 if await http_request.is_disconnected():
                     logger.info(
                         "客户端已断开, 中止流式生成 session=%s", request.session_id

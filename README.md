@@ -34,7 +34,7 @@ The bits I think are worth a closer look during code review:
 
 - **LangChain LCEL pipeline** with MMR retrieval against a persisted **ChromaDB** vector store, sources cited in the response.
 - **Document fingerprinting**: SHA-256 over `docs/` decides whether to reuse the existing vector store or rebuild on startup, so editing knowledge base files is a single restart away.
-- **SSE streaming with client-disconnect cancellation**: the backend checks `request.is_disconnected()` between tokens, so closing the chat panel actually stops billing OpenAI tokens — not a given in most LangChain demos.
+- **SSE streaming with client-disconnect cancellation**: the backend checks `request.is_disconnected()` between tokens, so closing the chat panel actually stops billing LLM tokens — not a given in most LangChain demos.
 - **Adaptive query condensation**: a heuristic detects pronoun-heavy follow-ups (e.g. "那它怎么办") and only then spends a second LLM call to rewrite the question into a standalone retrieval query.
 - **Prompt-injection hardening**: retrieved documents are wrapped in `<context>` tags with `</context>` escaped inside payloads, plus a system-level rule that explicitly tells the model to treat both context and user input as data, not instructions.
 
@@ -100,15 +100,15 @@ The bits I think are worth a closer look during code review:
 
 ### AI Backend (`backend/`)
 
-| Category       | Technology                              |
-| -------------- | --------------------------------------- |
-| Framework      | **FastAPI** (async, SSE)                |
-| LLM Pipeline   | **LangChain LCEL**                      |
-| Vector Store   | **ChromaDB** (persistent)               |
-| Embeddings     | **OpenAI** `text-embedding-3-small`     |
-| Chat Model     | **OpenAI** `gpt-4o-mini` (configurable) |
-| Linter / Tests | **Ruff + Pytest + httpx ASGI client**   |
-| Container      | **Multi-stage Dockerfile, non-root**    |
+| Category       | Technology                                        |
+| -------------- | ------------------------------------------------- |
+| Framework      | **FastAPI** (async, SSE)                          |
+| LLM Pipeline   | **LangChain LCEL**                                |
+| Vector Store   | **ChromaDB** (persistent)                         |
+| Embeddings     | **Google** `text-embedding-004`                   |
+| Chat Model     | **Google** `gemini-3.1-flash-lite` (configurable) |
+| Linter / Tests | **Ruff + Pytest + httpx ASGI client**             |
+| Container      | **Multi-stage Dockerfile, non-root**              |
 
 ## 🚀 Quick Start
 

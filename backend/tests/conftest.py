@@ -1,4 +1,4 @@
-"""共享 pytest fixtures - mock 掉所有 OpenAI / Chroma 实际调用。"""
+"""共享 pytest fixtures - mock 掉所有 Gemini / Chroma 实际调用。"""
 
 from __future__ import annotations
 
@@ -12,7 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-os.environ.setdefault("OPENAI_API_KEY", "sk-test-not-a-real-key")
+# Gemini SDK 在 import / Client() 时会校验存在 API key, 给一个占位避免报错。
+# 真正的 LLM / retriever 在 stub_rag_engine fixture 里被替换掉, 不会触达网络。
+os.environ.setdefault("GEMINI_API_KEY", "AIza-test-not-a-real-key")
+os.environ.setdefault("GOOGLE_API_KEY", "AIza-test-not-a-real-key")
 
 import pytest  # noqa: E402
 
@@ -38,7 +41,7 @@ class _StubLLM:
 
 @pytest.fixture(autouse=True)
 def stub_rag_engine(monkeypatch):
-    """避免任何测试触发真实 OpenAI / Chroma 初始化。"""
+    """避免任何测试触发真实 Gemini / Chroma 初始化。"""
 
     engine = rag_engine_module.rag_engine
 

@@ -1,4 +1,4 @@
-"""API 烟测 - 完全离线, 不打 OpenAI。"""
+"""API 烟测 - 完全离线, 不打 Gemini。"""
 
 from __future__ import annotations
 

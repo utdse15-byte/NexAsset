@@ -74,8 +74,8 @@ jobs:
 
       - name: Smoke tests
         env:
-          # OpenAI 调用全部被 mock, 这里只是占位避免 ChatOpenAI 校验
-          OPENAI_API_KEY: sk-test-not-a-real-key
+          # Gemini 调用全部被 mock, 这里只是占位避免 ChatGoogleGenerativeAI 校验
+          GEMINI_API_KEY: AIza-test-not-a-real-key
         run: pytest -q
 
       # Python 依赖安全审计 - 报告但不阻塞

@@ -1,6 +1,6 @@
 # NexAsset AI Backend
 
-FastAPI + LangChain + ChromaDB 的 RAG 智能助手服务。
+FastAPI + LangChain + ChromaDB 的 RAG 智能助手服务，使用 Google Gemini。
 
 ## 特性
 
@@ -16,11 +16,13 @@ FastAPI + LangChain + ChromaDB 的 RAG 智能助手服务。
 cd backend
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
-cp .env.example .env       # ⚠ 必填 OPENAI_API_KEY, docker compose up 也需要此文件
+cp .env.example .env       # ⚠ 必填 GEMINI_API_KEY, docker compose up 也需要此文件
 python main.py             # http://localhost:8000
 ```
 
 打开 `http://localhost:8000/docs` 可看到 Swagger UI。
+
+API key 从 https://aistudio.google.com/app/apikey 免费创建。
 
 ### 跑测试 / lint
 
@@ -29,25 +31,24 @@ ruff check .
 pytest -q
 ```
 
-测试全部 mock OpenAI / Chroma，无需外网或真 key。
+测试全部 mock Gemini / Chroma，无需外网或真 key。
 
 ## 环境变量
 
 见 `.env.example`。关键项：
 
-| 变量                        | 默认                     | 说明                                |
-| --------------------------- | ------------------------ | ----------------------------------- |
-| `OPENAI_API_KEY`            | –                        | **必填**                            |
-| `OPENAI_BASE_URL`           | –                        | 自定义 endpoint                     |
-| `CHAT_MODEL`                | `gpt-4o-mini`            |                                     |
-| `EMBEDDING_MODEL`           | `text-embedding-3-small` |                                     |
-| `ALLOWED_ORIGINS`           | 空                       | 跨域来源 (逗号分隔)。留空走同源反代 |
-| `RATE_LIMIT_WINDOW_SECONDS` | 60                       | 限流时间窗                          |
-| `RATE_LIMIT_MAX_REQUESTS`   | 30                       | 窗口内最大请求数 (按 IP)            |
-| `ADMIN_TOKEN`               | 空                       | 设置后才能调 `POST /api/ai/reindex` |
-| `MAX_HISTORY_LENGTH`        | 20                       | 单会话最多保留消息数                |
-| `MAX_SESSIONS`              | 100                      | 总会话数上限 (LRU)                  |
-| `LOG_LEVEL`                 | `INFO`                   |                                     |
+| 变量                        | 默认                        | 说明                                |
+| --------------------------- | --------------------------- | ----------------------------------- |
+| `GEMINI_API_KEY`            | –                           | **必填** (也接受 `GOOGLE_API_KEY`)  |
+| `CHAT_MODEL`                | `gemini-3.1-flash-lite`     |                                     |
+| `EMBEDDING_MODEL`           | `models/text-embedding-004` |                                     |
+| `ALLOWED_ORIGINS`           | 空                          | 跨域来源 (逗号分隔)。留空走同源反代 |
+| `RATE_LIMIT_WINDOW_SECONDS` | 60                          | 限流时间窗                          |
+| `RATE_LIMIT_MAX_REQUESTS`   | 30                          | 窗口内最大请求数 (按 IP)            |
+| `ADMIN_TOKEN`               | 空                          | 设置后才能调 `POST /api/ai/reindex` |
+| `MAX_HISTORY_LENGTH`        | 20                          | 单会话最多保留消息数                |
+| `MAX_SESSIONS`              | 100                         | 总会话数上限 (LRU)                  |
+| `LOG_LEVEL`                 | `INFO`                      |                                     |
 
 ## API
 
@@ -62,3 +63,13 @@ pytest -q
 
 - 重启容器：`rag_engine` 检测到指纹变更会自动重建
 - 不停机：`curl -X POST -H "X-Admin-Token: $ADMIN_TOKEN" http://backend/api/ai/reindex`
+
+## 关于切换 LLM provider
+
+当前用的是 Gemini (`langchain-google-genai`)。要切换到其他 provider:
+
+1. `requirements.txt` 换成对应的 langchain 集成包 (如 `langchain-openai`、`langchain-anthropic`)
+2. `rag_engine.py` 把 `ChatGoogleGenerativeAI` / `GoogleGenerativeAIEmbeddings` 换成对应类
+3. `.env.example` 与测试 fixture 里的 API key 环境变量名同步
+
+LCEL / streaming / SSE / 限流 / LRU / prompt-injection 防护这些都在 LangChain 抽象之上, 不用改。
