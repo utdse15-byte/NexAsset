@@ -159,10 +159,12 @@ src/
 
 ## 🔧 Router modes
 
-`VITE_APP_ROUTER_MODE` controls how the dashboard route table is built. Both modes currently read the same local `DB_MENU` mock; the difference is the code path you opt into when wiring up a real backend.
+`VITE_APP_ROUTER_MODE` controls which navigation tree the dashboard renders.
 
-- `frontend` (default) — routes are declared statically in `src/routes/sections/dashboard/frontend.tsx`. Recommended unless you have a real menu API.
-- `backend` — routes are generated from `DB_MENU` via `getBackendDashboardRoutes()`. Treat this as a placeholder; before pointing it at a real `/api/menu` endpoint, follow the checklist in the JSDoc above `getBackendDashboardRoutes` (failure fallback, loading UX, 401 handling).
+- `backend` (default, recommended) — menu and routes are generated from `DB_MENU`, i.e. the actual NexAsset product surface (assets / purchasing / consumables / users / departments / audit / analytics).
+- `frontend` — renders the demo menu inherited from the underlying slash-admin template (Components / Menu Level / Iframe / etc.). Use only when inspecting the template base.
+
+Both modes currently read the same local `DB_MENU` mock; the difference is which menu tree gets shown. Before pointing `backend` mode at a real `/api/menu` endpoint, follow the migration checklist in the JSDoc above `getBackendDashboardRoutes` (failure fallback, loading UX, 401 handling).
 
 ## 📝 License
 
