@@ -52,10 +52,12 @@ const signIn = http.post(`/api${UserApi.SignIn}`, async ({ request }) => {
 });
 
 const userList = http.get("/api/user", async () => {
+	// 剥离 password 字段, 避免明文密码出现在列表响应中
+	const sanitized = userManager.get().map(({ password: _pw, ...rest }) => rest);
 	return HttpResponse.json({
 		status: ResultStatus.SUCCESS,
 		message: "",
-		data: userManager.get(),
+		data: sanitized,
 	});
 });
 
@@ -115,10 +117,11 @@ const findById = http.get("/api/user/:id", async ({ params }) => {
 	const { id } = params;
 	const user = userManager.find((item) => item.id === id);
 	if (user) {
+		const { password: _pw, ...sanitized } = user;
 		return HttpResponse.json({
 			status: ResultStatus.SUCCESS,
 			message: "",
-			data: [user],
+			data: [sanitized],
 		});
 	}
 	return HttpResponse.json({

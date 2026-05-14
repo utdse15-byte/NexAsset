@@ -3,7 +3,6 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { UserInfo, UserToken } from "#/entity";
-import { StorageEnum } from "#/enum";
 import userService, { type SignInReq } from "@/api/services/userService";
 
 type UserStore = {
@@ -38,8 +37,8 @@ const useUserStore = create<UserStore>()(
 			name: "userStore", // name of the item in the storage (must be unique)
 			storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
 			partialize: (state) => ({
-				[StorageEnum.UserInfo]: state.userInfo,
-				[StorageEnum.UserToken]: state.userToken,
+				userInfo: state.userInfo,
+				userToken: state.userToken,
 			}),
 		},
 	),
@@ -65,7 +64,8 @@ export const useSignIn = () => {
 			setUserToken({ accessToken, refreshToken });
 			setUserInfo(user);
 		} catch (err) {
-			toast.error(err.message, {
+			const message = err instanceof Error ? err.message : "登录失败，请重试";
+			toast.error(message, {
 				position: "top-center",
 			});
 			throw err;

@@ -10,7 +10,6 @@ export interface UserInfo {
 	id: string;
 	email: string;
 	username: string;
-	password?: string;
 	avatar?: string;
 	roles?: Role[];
 	status?: BasicStatus;
@@ -62,6 +61,13 @@ export interface User extends CommonOptions {
 	role?: Role;
 }
 
+/**
+ * 对外响应专用的 User 类型 (剥离敏感字段)。
+ * 任何返回给前端 / 列表接口 / 详情接口的 user 对象都应当用这个类型,
+ * 真实后端必须确保数据库里的 `password` 字段从不进入 JSON 响应。
+ */
+export type UserDTO = Omit<User, "password">;
+
 export interface Role extends CommonOptions {
 	id: string; // uuid
 	name: string;
@@ -95,7 +101,7 @@ export interface Menu extends CommonOptions, MenuMetaInfo {
 export type MenuMetaInfo = Partial<
 	Pick<NavItemDataProps, "path" | "icon" | "caption" | "info" | "disabled" | "auth" | "hidden">
 > & {
-	externalLink?: URL;
+	externalLink?: string;
 	component?: string;
 };
 

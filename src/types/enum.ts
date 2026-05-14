@@ -6,6 +6,7 @@ export enum BasicStatus {
 export enum ResultStatus {
 	SUCCESS = 0,
 	ERROR = -1,
+	/** 401 Unauthorized — 历史命名为 TIMEOUT, 实际指 token 过期/未授权 (HTTP 401)。 */
 	TIMEOUT = 401,
 }
 

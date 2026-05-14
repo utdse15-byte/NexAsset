@@ -8,7 +8,7 @@ import userStore from "@/store/userStore";
 
 const axiosInstance = axios.create({
 	baseURL: GLOBAL_CONFIG.apiBaseUrl,
-	timeout: 50000,
+	timeout: 15000,
 	headers: { "Content-Type": "application/json;charset=utf-8" },
 });
 
@@ -25,10 +25,13 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
 	(res: AxiosResponse<Result<any>>) => {
-		if (!res.data) throw new Error(t("sys.api.apiRequestFailed"));
+		// 204/空 body：当作无数据成功，让上层自行处理
+		if (res.data == null) {
+			return undefined as never;
+		}
 		const { status, data, message } = res.data;
 		if (status === ResultStatus.SUCCESS) {
-			return data;
+			return data as never;
 		}
 		throw new Error(message || t("sys.api.apiRequestFailed"));
 	},
@@ -38,6 +41,10 @@ axiosInstance.interceptors.response.use(
 		toast.error(errMsg, { position: "top-center" });
 		if (response?.status === 401) {
 			userStore.getState().actions.clearUserInfoAndToken();
+			// 已经在登录页就不再跳转, 避免登录请求 401 时无限循环
+			if (typeof window !== "undefined" && !window.location.pathname.startsWith("/auth/")) {
+				window.location.replace("/auth/login");
+			}
 		}
 		return Promise.reject(error);
 	},
