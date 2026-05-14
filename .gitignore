@@ -24,6 +24,10 @@ dist-ssr
 # env
 .env
 
+# Local docker-compose overrides (e.g. exposing backend port for `pnpm dev`)
+docker-compose.override.yml
+docker-compose.override.yaml
+
 # Kiro internal specs (local-only, do not commit)
 .kiro/
 
