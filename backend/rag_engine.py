@@ -179,8 +179,13 @@ class RAGEngine:
 
         # 主对话 LLM: 流式, 略带创造性
         self._llm = ChatGoogleGenerativeAI(model=CHAT_MODEL, temperature=0.3)
-        # condense 用确定性, 不流式
-        self._condense_llm = ChatGoogleGenerativeAI(model=CHAT_MODEL, temperature=0)
+        # condense 用确定性, 不流式; 限制 max_output_tokens 避免它写长篇大论
+        # (改写后的问题不会很长, 限制后能显著降低 condense 调用的 TTFT)
+        self._condense_llm = ChatGoogleGenerativeAI(
+            model=CHAT_MODEL,
+            temperature=0,
+            max_output_tokens=128,
+        )
 
         logger.info("RAG 引擎初始化完成 (chroma=%s)", CHROMA_PERSIST_DIR)
 
@@ -203,12 +208,32 @@ class RAGEngine:
         chunks = splitter.split_documents(documents)
         logger.info("文档切分为 %d 个块", len(chunks))
 
-        return Chroma.from_documents(
-            documents=chunks,
-            embedding=embeddings,
+        # ⚠ Gemini embedding API 当前不支持一次传多个 input (batch mode 会被
+        # 静默截断, 只返回第 1 条向量, 导致 Chroma add_texts 触发 IndexError)。
+        # 这里我们用 embed_query 逐条调用, 然后直接调 chromadb 底层 collection
+        # 写入预计算好的向量, 完全绕开 langchain-chroma 的 embed_documents 路径。
+        texts = [c.page_content for c in chunks]
+        metadatas = [c.metadata for c in chunks]
+        logger.info("正在逐条调用 Gemini embedding (共 %d 条)...", len(texts))
+        vectors = [embeddings.embed_query(t) for t in texts]
+        logger.info("embedding 完成, 写入 Chroma...")
+
+        store = Chroma(
             persist_directory=str(CHROMA_PERSIST_DIR),
+            embedding_function=embeddings,
             collection_name="nexasset_knowledge",
         )
+        if texts:
+            ids = [f"doc-{i}" for i in range(len(texts))]
+            # 直接落到 chromadb 底层 collection, 不走 langchain-chroma.add_texts
+            # (后者忽略外部 embeddings 参数, 仍会调用 embed_documents)
+            store._collection.add(
+                ids=ids,
+                documents=texts,
+                metadatas=metadatas,
+                embeddings=vectors,
+            )
+        return store
 
     def rebuild_index(self) -> None:
         """强制重建向量索引 (供管理员端点调用)。"""
@@ -279,10 +304,14 @@ class RAGEngine:
             yield "RAG 引擎尚未初始化，请稍后再试。"
             return
 
+        from time import perf_counter
+
+        t0 = perf_counter()
         history = self._get_history(session_id)
 
-        # Step 1: 改写问题
+        # Step 1: 改写问题 (有历史 + 含代词时才会真发 LLM 调用)
         standalone = await self._condense_question(question, history)
+        t_condense = perf_counter()
 
         # Step 2: 检索
         try:
@@ -291,6 +320,7 @@ class RAGEngine:
             logger.exception("检索失败")
             yield "知识库检索失败，请稍后再试。"
             return
+        t_retrieve = perf_counter()
 
         # 转义 docs 中可能出现的 </context> 等闭合标签, 防止 prompt-injection 跳出 context 边界
         def _escape_context(text: str) -> str:
@@ -322,9 +352,20 @@ class RAGEngine:
 
         # Step 4: 流式生成
         full_answer_parts: list[str] = []
+        first_token_logged = False
         async for chunk in self._llm.astream(messages):
             token = _coerce_token(chunk.content)
             if token:
+                if not first_token_logged:
+                    t_first_token = perf_counter()
+                    logger.info(
+                        "TTFT timing (s) | condense=%.2f retrieve=%.2f prompt+first_token=%.2f | total=%.2f",
+                        t_condense - t0,
+                        t_retrieve - t_condense,
+                        t_first_token - t_retrieve,
+                        t_first_token - t0,
+                    )
+                    first_token_logged = True
                 full_answer_parts.append(token)
                 yield token
 
