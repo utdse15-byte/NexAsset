@@ -4,8 +4,25 @@ import { Component } from "./utils";
 
 export function getFrontendDashboardRoutes(): RouteObject[] {
 	const frontendDashboardRoutes: RouteObject[] = [
+		// Dashboard
+		{ path: "dashboard/workbench", element: Component("/pages/dashboard/workbench") },
+		{ path: "dashboard/analysis", element: Component("/pages/dashboard/analysis") },
+		// Legacy short paths (backward compat)
 		{ path: "workbench", element: Component("/pages/dashboard/workbench") },
 		{ path: "analysis", element: Component("/pages/dashboard/analysis") },
+		// Assets
+		{
+			path: "assets",
+			children: [
+				{ index: true, element: <Navigate to="inventory" replace /> },
+				{ path: "analysis", element: Component("/pages/dashboard/assets/analysis") },
+				{ path: "inventory", element: Component("/pages/dashboard/assets/inventory") },
+				{ path: "create", element: Component("/pages/dashboard/assets/create") },
+				{ path: "detail/:id", element: Component("/pages/dashboard/assets/detail") },
+				{ path: "consumables", element: Component("/pages/dashboard/assets/consumables") },
+				{ path: "purchase", element: Component("/pages/dashboard/assets/purchase") },
+			],
+		},
 		{
 			path: "components",
 			children: [

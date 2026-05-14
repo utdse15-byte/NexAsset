@@ -15,6 +15,9 @@ const getAssetStatistics = () =>
 	apiClient.get<{
 		statusDistribution: { label: string; value: number }[];
 		categoryDistribution: { label: string; value: number }[];
+		ageDistribution: { label: string; value: number }[];
+		stockAlerts: { category: string; remaining: number; threshold: number; status: string }[];
+		mostRepaired: { model: string; count: number; rate: number }[];
 	}>({ url: `${AssetApi.List}/statistics` });
 
 // Mock Consumables API

@@ -29,4 +29,12 @@ const convert = (menuTree: MenuTree[]): NavProps["data"] => {
 	}));
 };
 
+/**
+ * Backend nav data.
+ *
+ * ⚠ 与 routes/sections/dashboard/backend.tsx 一致, 这里也是"静态"实现:
+ * 直接读 DB_MENU 同步生成导航数据。routerMode === "backend" 当前并不真正
+ * 调用 /api/menu。要切到真后端时必须把 backendNavData 改成 hook 形式 (例如
+ * useBackendNavData() 内部用 react-query), 并让 nav 组件等待数据。
+ */
 export const backendNavData: NavProps["data"] = convert(convertFlatToTree(DB_MENU));

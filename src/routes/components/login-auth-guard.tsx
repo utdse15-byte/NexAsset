@@ -19,5 +19,10 @@ export default function LoginAuthGuard({ children }: Props) {
 		check();
 	}, [check]);
 
+	// 未认证时不渲染子组件, 避免闪烁
+	if (!accessToken) {
+		return null;
+	}
+
 	return <>{children}</>;
 }

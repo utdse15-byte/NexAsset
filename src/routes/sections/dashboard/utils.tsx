@@ -7,8 +7,8 @@ export const loadComponentFromPath = (path: string) => {
 	const pathArr = path.split("/");
 	pathArr.unshift("/src");
 
-	if (!pathArr.includes(".tsx")) {
-		return pathArr.push("index.tsx");
+	if (!path.endsWith(".tsx")) {
+		pathArr.push("index.tsx");
 	}
 	return Pages[pathArr.join("/")];
 };

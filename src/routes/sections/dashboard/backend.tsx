@@ -100,6 +100,17 @@ const convertToRoute = (items: MenuTree[], parent?: MenuTree): RouteObject[] => 
 	return routes;
 };
 
+/**
+ * Backend dashboard route generator.
+ *
+ * ⚠ 当前实现是"静态"的: 直接读取本地 mock 数据 (DB_MENU) 同步生成路由树。
+ * routerMode === "backend" 仅在语义上表示"未来由后端 /api/menu 提供",
+ * 真实接入后端时需要把数据来源换成异步加载结果, 并在 main.tsx 启动时
+ * 等待菜单返回后再 createBrowserRouter (或改用 lazy route)。在改造前请务必确保:
+ *   1. 菜单加载失败时有降级策略 (例如回退到 frontend 路由表);
+ *   2. 加载期间 UI 不闪烁 (建议加全屏 loading);
+ *   3. 401 时菜单接口被拦截后不会卡死。
+ */
 export function getBackendDashboardRoutes() {
 	const backendDashboardRoutes = convertToRoute(convertFlatToTree(DB_MENU));
 	return backendDashboardRoutes;
