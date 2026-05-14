@@ -24,6 +24,9 @@ dist-ssr
 # env
 .env
 
+# Kiro internal specs (local-only, do not commit)
+.kiro/
+
 # vite build stats
 stats.html
 
@@ -34,3 +37,16 @@ check_*.txt
 lint_*.txt
 build_*.txt
 admin_inventory.png
+
+# Python backend
+backend/.env
+backend/data/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
+backend/venv/
+backend/.venv/
+backend/.pytest_cache/
+backend/.ruff_cache/
+backend/.coverage
+backend/htmlcov/
