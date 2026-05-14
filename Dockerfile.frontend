@@ -1,0 +1,26 @@
+# ── Stage 1: Build ───────────────────────────────────
+FROM node:20-alpine AS builder
+WORKDIR /app
+
+# 默认空串 → 前端 fetch("/api/ai/...") → nginx 同源反代到 backend
+ARG VITE_AI_BACKEND_URL=""
+ENV VITE_AI_BACKEND_URL=${VITE_AI_BACKEND_URL}
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN corepack enable && pnpm install --frozen-lockfile
+
+COPY . .
+RUN pnpm build
+
+# ── Stage 2: Serve ───────────────────────────────────
+FROM nginx:alpine AS runtime
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# nginx:alpine 已默认暴露 80
+EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD wget -q -O - http://127.0.0.1/ >/dev/null || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]

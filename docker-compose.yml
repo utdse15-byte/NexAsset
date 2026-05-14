@@ -1,0 +1,59 @@
+services:
+  # ── 前端服务 (React + Nginx) ──────────────────────
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        # 留空 → 前端走同源 /api/ai → 由 nginx 反代到 backend
+        VITE_AI_BACKEND_URL: ""
+    ports:
+      - "3001:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── 后端服务 (FastAPI + LangChain) ────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    # 默认不对外暴露端口, 仅供前端 nginx 通过 docker 内网访问。
+    # 直接调试时把下面 expose 改成 ports 即可。
+    expose:
+      - "8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      # CORS: 通常留空 (走同源反代); 跨域调试时设为前端来源, 例如 http://localhost:5173
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+      RATE_LIMIT_WINDOW_SECONDS: ${RATE_LIMIT_WINDOW_SECONDS:-60}
+      RATE_LIMIT_MAX_REQUESTS: ${RATE_LIMIT_MAX_REQUESTS:-30}
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+      # 反代部署: 信任 nginx 转发的 X-Forwarded-For 用于按真实客户端 IP 限流
+      TRUST_FORWARDED_FOR: "true"
+    volumes:
+      - backend-data:/app/data # ChromaDB 持久化
+      - ./backend/docs:/app/docs:ro # 知识库文档 (只读, 改后调 /api/ai/reindex)
+    deploy:
+      resources:
+        limits:
+          memory: 1.5g
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/ai/health', timeout=3).status==200 else 1)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+    restart: unless-stopped
+
+volumes:
+  backend-data:
