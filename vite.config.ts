@@ -10,6 +10,8 @@ export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), "");
 	const base = env.VITE_APP_PUBLIC_PATH || "/";
 	const isProduction = mode === "production";
+	// 开发期: AI 后端默认本地 8000; 通过 vite 代理使前端可走同源 /api/ai
+	const aiBackendTarget = env.VITE_DEV_AI_BACKEND_PROXY_TARGET || "http://localhost:8000";
 
 	return {
 		base,
@@ -39,14 +41,20 @@ export default defineConfig(({ mode }) => {
 			open: true,
 			host: true,
 			port: 3001,
-			// proxy: {
-			// 	"/api": {
-			// 		target: "http://localhost:3000",
-			// 		changeOrigin: true,
-			// 		rewrite: (path) => path.replace(/^\/api/, ""),
-			// 		secure: false,
-			// 	},
-			// },
+			proxy: {
+				// AI 后端: 与 nginx.conf 行为对齐, 让前端 fetch("/api/ai/...") 在开发与生产一致
+				"/api/ai": {
+					target: aiBackendTarget,
+					changeOrigin: true,
+					ws: false,
+					// SSE 流式: 不走默认缓冲
+					configure: (proxy) => {
+						proxy.on("proxyReq", (proxyReq) => {
+							proxyReq.setHeader("X-Forwarded-Proto", "http");
+						});
+					},
+				},
+			},
 		},
 
 		build: {

@@ -1,4 +1,5 @@
 import { ThemeLayout } from "#/enum";
+import AiChatWidget from "@/components/ai-chat/AiChatWidget";
 import Logo from "@/components/logo";
 import { down, useMediaQuery } from "@/hooks";
 import { useSettings } from "@/store/settingStore";
@@ -15,6 +16,7 @@ export default function DashboardLayout() {
 			className="w-full min-h-screen bg-background bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-100 via-background to-background dark:from-indigo-950 dark:via-background dark:to-background"
 		>
 			{isMobile ? <MobileLayout /> : <PcLayout />}
+			<AiChatWidget />
 		</div>
 	);
 }
