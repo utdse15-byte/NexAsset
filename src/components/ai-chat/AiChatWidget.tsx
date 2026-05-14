@@ -1,4 +1,4 @@
-﻿import { AnimatePresence, motion } from "motion/react";
+﻿import { AnimatePresence, m } from "motion/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/utils";
 import { feedSse } from "./sse-parser";
@@ -290,7 +290,7 @@ export default function AiChatWidget() {
 	return (
 		<>
 			{/* ── 悬浮按钮 ── */}
-			<motion.button
+			<m.button
 				ref={triggerButtonRef}
 				type="button"
 				data-testid="ai-chat-toggle"
@@ -345,12 +345,12 @@ export default function AiChatWidget() {
 						<circle cx="14" cy="9" r="1" fill="currentColor" />
 					</svg>
 				)}
-			</motion.button>
+			</m.button>
 
 			{/* ── 聊天窗口 ── */}
 			<AnimatePresence>
 				{isOpen && (
-					<motion.div
+					<m.div
 						id="ai-chat-panel"
 						role="dialog"
 						aria-modal="false"
@@ -516,7 +516,7 @@ export default function AiChatWidget() {
 								Powered by LangChain + ChromaDB RAG
 							</div>
 						</div>
-					</motion.div>
+					</m.div>
 				)}
 			</AnimatePresence>
 		</>
