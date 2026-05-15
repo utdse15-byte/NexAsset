@@ -32,8 +32,10 @@ window.addEventListener("unhandledrejection", (e) => captureGlobalError("rejecti
 
 await registerLocalIcons();
 
-// MSW 仅在开发环境启动, 生产环境不注册 mock service worker
-if (import.meta.env.DEV) {
+// 在没有真实后端的情况下，强制在生产环境也启动 mock service worker
+// 注意：如果未来有了真实后端，请改回 `if (import.meta.env.DEV)`
+// biome-ignore lint/correctness/noConstantCondition: force MSW in production
+if (true) {
 	await worker.start({
 		onUnhandledRequest: "bypass",
 		serviceWorker: { url: urlJoin(GLOBAL_CONFIG.publicPath, "mockServiceWorker.js") },
