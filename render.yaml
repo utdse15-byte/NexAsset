@@ -1,0 +1,28 @@
+# Render Blueprint — NexAsset AI Backend
+# 用法：在 Render 控制台 → Blueprints → New Blueprint Instance → 选本仓库
+# Render 会读这个文件并自动创建对应服务。
+
+services:
+  - type: web
+    name: nexasset-ai-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free                       # 免费档：750h/月，15min 无活动自动 spin down
+    region: oregon                   # 离亚洲用户最近的数据中心
+    healthCheckPath: /api/ai/health
+    autoDeploy: true                 # 推送代码到 GitHub 后自动部署
+    envVars:
+      # ─ Google Gemini 密钥 (必填，为了安全请在 Render 控制台手动填) ─
+      - key: GEMINI_API_KEY
+        sync: false                  
+      
+      # ─ 跨域来源配置 (为了让你的 Vercel 前端可以访问) ─
+      # 在 Render 控制台手动填入你的 Vercel 域名，例如: https://your-project.vercel.app
+      - key: ALLOWED_ORIGINS
+        sync: false
+        
+      # ─ 反向代理设置 (必填) ─
+      # 因为部署在 Render (反向代理) 后面，需要开启此项才能正确读取真实 IP 进行限流
+      - key: TRUST_FORWARDED_FOR
+        value: "true"
